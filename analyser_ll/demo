@@ -1,0 +1,7 @@
+%assign	 value1 = ""
+%assign	 value2 = ""
+
+rule1 -> dérivation1
+	| dérivation2
+
+rule2 -> dérivation1
