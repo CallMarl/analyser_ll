@@ -1,7 +1,14 @@
-%assign	 value1 = ""
-%assign	 value2 = ""
+%%
+
+term1
+term2
+term3 term4
+
+%%
 
 rule1 -> dérivation1
 	| dérivation2
 
 rule2 -> dérivation1
+
+%%
