@@ -1,11 +1,11 @@
 #Analyser LL
 
 L'analyser LL est un programme permettant de générer un tableau d'analyse à
-partir d'une grammaire. A partir d'un fichier texte formaté, il génère un
+partir d'une grammaire, d'un fichier texte formaté. Il génère un
 fichier binaire exploitable par un programme C.
 
 Cette Analyser LL est accompagné d'une libraire permettant de travailler avec
-les fichier binaires ```.all```, directement depuis un projet C.
+les fichier binaires ```.all``` ainsi générés, directement depuis un projet C.
 
 
 ##Installation
@@ -14,7 +14,7 @@ Pour installer l'analyser LL, il suffit de lancer les commandes ci-dessous
 
 ```
 git clone  https://CallMarl@bitbucket.org/CallMarl/analyser_ll.git
-sh init.sh
+cd analyser_ll | sh ./init.sh
 make analyser_ll
 
 ```
@@ -40,17 +40,17 @@ règles de formatage:
 ####Les blocks
 
 Un fichier de grammaire ``.gmr`` est composé de deux bloques délimitant les
-variables terminal, des règles deux grammaire. Le délimiteur utilisé est le
+variables terminales, des règles de grammaire. Le délimiteur utilisé est le
 terme ``%%``.
 
 ```
 %%
 
-declaration des variable terminal
+déclaration des variable terminales
 
 %%
 
-declaration des regle
+déclaration des règles
 
 %%
 ```
@@ -98,8 +98,8 @@ EXP :: nbr somme nbr;
 ```
 
 Il est d'usage de nommer une règle en Majuscule, et les terminaux en minuscules.
-On dis que ``EXP`` dérive en ``nbr somme nbr``. La ou les dérivations sont
-marqués par le terme ``::`` une règle se termine par un ``;``.
+On dis que ``EXP`` dérive en ``nbr somme nbr``. Là où les dérivations sont
+marquées par le terme ``::`` et les règles se terminent par un ``;``.
 
 ```
 %%
@@ -125,8 +125,8 @@ EXP :: nbr somme nbr
 
 ####Termes réservés
 
-  * ``%%`` : Délimiteurs pour un bloques
-  * ``::`` : Règle de dérivation
+  * ``%%`` : Délimiteurs pour un bloque
+  * ``::`` : Règles de dérivation
   * ``;`` : Terme de fin de règles
 
 ####Exemple
@@ -172,6 +172,6 @@ NUMBER :: nbr
 ##Liens
 
 https://fr.wikipedia.org/wiki/Grammaire_formelle
+https://fr.wikipedia.org/wiki/Symboles_terminaux_et_non_terminaux
 https://fr.wikipedia.org/wiki/Grammaire_non_contextuelle
 https://fr.wikipedia.org/wiki/Analyse_LL
-https://fr.wikipedia.org/wiki/Symboles_terminaux_et_non_terminaux
