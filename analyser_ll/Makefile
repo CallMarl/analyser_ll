@@ -6,7 +6,7 @@
 #    By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/08 18:58:27 by pprikazs          #+#    #+#              #
-#    Updated: 2018/06/08 19:13:38 by pprikazs         ###   ########.fr        #
+#    Updated: 2018/06/13 16:23:09 by pprikazs         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,11 @@ DEPS = includes/*.h Makefile
 INCLUDES = -I./includes/
 
 SRCS = ./main.c \
-	   ./srcs/ft_analyser_ll.c
+	   ./srcs/ft_analyser_ll.c \
+	   ./srcs/ft_parse_gramma.c \
+	   ./srcs/ft_parse_readline.c \
+	   ./srcs/ft_parse_readrules.c \
+	   ./srcs/ft_parse_readterm.c
 
 OBJ = $(SRCS:./%.c=./%.o)
 
