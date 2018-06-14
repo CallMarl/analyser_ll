@@ -127,7 +127,6 @@ EXP :: nbr somme nbr
 
   * ``%%`` : Délimiteurs pour un bloque
   * ``::`` : Règles de dérivation
-  * ``;`` : Terme de fin de règles
 
 ####Exemple
 
@@ -137,8 +136,6 @@ EXP :: nbr somme nbr
 nbr somme produit moins
 
 %%
-
-%token	nbr somme produit
 
 SUM :: PRODUCT SUM_NEXT
 	;
