@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 16:08:21 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/06/14 17:05:11 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/06/14 18:05:04 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ extern int			ft_parse_readline(char *line, t_buff *term, t_buff *rule)
 		return (1);
 	}
 	if (stat > 2)
-		return (-2); // Trop de block seulement 2 sont valident
+		return (CODE_ERR4); // Trop de block seulement 2 sont valident
 	if (stat == 1)
 		ret = ft_parse_readterm(line, term);
 	else if (stat == 2)
-		ret = ft_parse_readterm(line, rule);
+		ret = ft_parse_readrule(line, rule);
 	return (ret);
 }
