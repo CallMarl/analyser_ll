@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 19:00:12 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/06/13 16:21:53 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/06/14 16:11:56 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 #include "analyser_ll.h"
 #include "libft.h"
 
-
+/*
 static void			ft_lltab_init(t_buff term, t_buff nterm)
 {
 	(void)term;
 	(void)nterm;
 }
+*/
 
 extern int			ft_analyser_ll(char *gramma_file)
 {
@@ -28,18 +29,18 @@ extern int			ft_analyser_ll(char *gramma_file)
 	int			ret;
 
 	ret = 1;
-	if (!(term = ft_buffinit(&term, FT_BUFF_SIZE, sizeof(t_term))
+	if (!(ft_buffinit(&term, FT_BUFF_SIZE, sizeof(t_term))))
 		ret = -1; //Alloc error
-	if (!(nterm = ft_buffinit(&rule, FT_BUFF_SIZE, sizeof(t_rule))
+	if (!(ft_buffinit(&rule, FT_BUFF_SIZE, sizeof(t_rule))))
 		ret = -1; //Alloc error
 	if (ret > 0)
-		ret = ft_parse_gramma(gramma_line, &term, &rule);
+		ret = ft_parse_gramma(gramma_file, &term, &rule);
 	if (ret < 0)
 		ft_error(ret);
-	ft_export_value(t_buff term, t_buff rule);
+	//ft_export_value(t_buff term, t_buff rule);
 	if (term.buff != 0)
 		ft_memdel(term.buff);
-	if (nterm.buff != 0)
-		ft_memdel(nterm.buff);
+	if (rule.buff != 0)
+		ft_memdel(rule.buff);
 	return (1);
 }

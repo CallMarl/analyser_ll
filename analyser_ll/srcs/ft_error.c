@@ -1,21 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/08 18:58:54 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/06/14 15:52:28 by pprikazs         ###   ########.fr       */
+/*   Created: 2018/06/14 15:58:52 by pprikazs          #+#    #+#             */
+/*   Updated: 2018/06/14 15:59:31 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "analyser_ll.h"
-
-extern int			main(int argc, char *argv[])
+void			ft_error(int err_code)
 {
-	ft_analyser_ll("");
-	(void)argc;
-	(void)argv;
-	return (0);
+	(void)err_code;
 }
