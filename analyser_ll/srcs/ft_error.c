@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 15:58:52 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/06/14 18:00:28 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/06/18 16:32:35 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,6 @@ void			ft_error(int err_code)
 
 	err_mess = ft_error_initmessage();
 	ft_putendl(err_mess[-err_code]);
+	if (err_code == CODE_ERR2)
+		ft_putendl("\tUsage : ./analyser_ll source.gmr dest.all");
 }
