@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 19:02:53 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/06/18 16:33:42 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/06/20 14:47:45 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,9 @@ int						ft_analyser_ll(int argc, char **argv);
 #define MESS_ERR5 "Une règle est définit mais aucune dérivation lui est spécifié."
 
 void					ft_error(int err_code);
-void					ft_debug_rule(t_buff *rule);
-void					ft_debug_term(t_buff *term);
+void					ft_debug_rule(t_buff rule);
+void					ft_debug_term(t_buff term);
+int						ft_lltab_init(t_buff term, t_buff rule);
 int						ft_parse_gramma(char *gramma_file, t_buff *term, t_buff *nterm);
 int						ft_parse_readline(char *line, t_buff *term, t_buff *rule);
 int						ft_parse_readrule(char *line, t_buff *rule);
