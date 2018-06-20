@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 19:02:53 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/06/20 14:47:45 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/06/20 18:26:03 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 
 typedef struct s_term	t_term;
 typedef struct s_rule	t_rule;
+typedef struct s_lltab	t_lltab;
+typedef struct s_llderi	t_llderi;
 
 struct					s_term
 {
@@ -35,6 +37,37 @@ struct					s_rule
 	int					i;
 	char				*rule;
 	char				*deri;
+};
+
+
+/*
+** Structure pour la table d'analyse ll,
+** Matrice cub de coordonnée x, y, z où 
+** x définit l'ensemble des terminaux,
+** y définit l'ensemble des règles
+** et z valeur à la coordonnées [x, y], dérivation de la règle y par x
+*/ 
+
+struct					s_lltab
+{
+	int					max_x;
+	int					max_y;
+	int					**lltab;
+};
+
+/*
+** i index de la dérivation
+** y index de la regle dérivé
+** taille du tableau de dérivation
+** table des dérivation
+*/
+
+struct					s_llderi
+{
+	int					i;
+	int					y;
+	size_t				d_size;
+	int					*deri;
 };
 
 int						ft_analyser_ll(int argc, char **argv);
@@ -55,6 +88,7 @@ int						ft_analyser_ll(int argc, char **argv);
 #define MESS_ERR5 "Une règle est définit mais aucune dérivation lui est spécifié."
 
 void					ft_error(int err_code);
+void					ft_debug_deri(void);
 void					ft_debug_rule(t_buff rule);
 void					ft_debug_term(t_buff term);
 int						ft_lltab_init(t_buff term, t_buff rule);
