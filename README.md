@@ -127,6 +127,7 @@ EXP :: nbr somme nbr
 
   * ``%%`` : Délimiteurs pour un bloque
   * ``::`` : Règles de dérivation
+  * ``ε`` : Caractere null
 
 ####Exemple
 
