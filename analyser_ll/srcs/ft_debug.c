@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 19:02:03 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/06/20 14:47:58 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/06/20 15:36:28 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@ extern void			ft_debug_rule(t_buff rule)
 	while (i < rule.cr)
 	{
 		tmp = ((t_rule *)rule.buff)[i];
+		ft_putstr("rule index :");
+		ft_putnbr(tmp.i);
+		ft_putchar('\n');
 		ft_putstr("rule : ");
 		ft_putendl(tmp.rule);
 		ft_putstr("derivation : ");
@@ -29,6 +32,11 @@ extern void			ft_debug_rule(t_buff rule)
 		i++;
 	}
 }
+
+/*
+** Bien que non présent dans le display de ce debugging le caractere `ε`
+** est implicitement inclut dans le table d'analyse ll.
+*/
 
 extern void			ft_debug_term(t_buff term)
 {
