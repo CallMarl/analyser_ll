@@ -139,26 +139,20 @@ nbr somme produit moins
 %%
 
 SUM :: PRODUCT SUM_NEXT
-	;
 
 SUM_NEXT :: ε
          :: somme SUM
-	;
 
-PRODUCT :: EXPR PRODUCT_NEXT
-	;
+PRODUCT :: EXRP PRODUCT_NEXT
 
 PRODUCT_NEXT :: ε
              :: produit PRODUCT
-	;
 
 EXRP :: ( SUM )
-		 :: NUMBER
-	;
+	 :: NUMBER
 
 NUMBER :: nbr
-		   :: moins nbr
-	;
+	   :: moins nbr
 
 %%
 ```
