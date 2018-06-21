@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 19:02:03 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/06/20 18:33:38 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/06/21 16:32:01 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,19 @@ extern void			ft_debug_deri(void)
 		ft_putnbr(tmp[i].i);
 		ft_putstr("\nderi rule : ");
 		ft_putnbr(tmp[i].y);
+		ft_putstr("\nnb vals : ");
+		ft_putnbr(tmp[i].d_size);
 		ft_putstr("\nderi vals : ");
 		j = 0;
-		while (j < tmp->d_size)
+		while (j < tmp[i].d_size)
 		{
 			(j == 0) ? ft_putstr("{") : ft_putstr(", ");
-			ft_putnbr(tmp[i].deri[j]);
+			ft_putnbr((int)(tmp[i].deri[j]));
 			j++;
-			if (j == tmp->d_size)
+			if (j == tmp[i].d_size)
 				ft_putchar('}');
 		}
+		ft_putchar('\n');
 		i++;
 	}
 }

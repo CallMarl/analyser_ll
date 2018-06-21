@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/20 14:32:50 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/06/20 18:41:57 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/06/21 16:04:01 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,7 @@ static int			ft_format_setderi(t_rule *cur, t_buff *rule, \
 	{
 		if ((code = ft_format_dericode(deri[i], rule, term)) < 0)
 			break ;
-		ft_putstr(deri[i]);
 		tmp.deri[i++] = code;
-		ft_putnbr(tmp.deri[i - 1]);
 	}
 	ft_strarr_del(&deri);
 	if (code < 0)
@@ -78,7 +76,7 @@ static int			ft_format_deri(t_buff *rule, t_buff *term)
 
 	if (g_llderi.buff == 0)
 	{
-		if (!(ft_buffinit(&g_llderi, rule->cr, sizeof(t_lltab))))
+		if (!(ft_buffinit(&g_llderi, rule->cr, sizeof(t_llderi))))
 			return (CODE_ERR1);
 	}
 	i = 0;
@@ -95,8 +93,8 @@ extern int			ft_lltab_init(t_buff rule, t_buff term)
 {
 	int				ret;
 
-	ft_debug_term(term);
-	ft_putchar('\n');
+	//ft_debug_term(term);
+	//ft_putchar('\n');
 	ft_debug_rule(rule);
 	ret = ft_format_deri(&rule, &term);
 	ft_debug_deri();
