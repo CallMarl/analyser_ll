@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/22 15:45:28 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/06/25 16:45:04 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/06/25 17:52:17 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ extern int			ft_lltab_first(t_llderi rule, int y, int ind, int mid)
 	int				i;
 	int				ret;
 
-	ft_putnbr(rule.i);
 	if (rule.deri[0] == rule.y)
 		return (-1); //Erreur de définition de la gammaire.
 	else if (rule.deri[0] < mid)
