@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/20 14:32:50 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/06/21 16:04:01 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/06/25 16:45:57 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,26 @@
 #include "libft.h"
 
 extern t_buff		g_llderi;
+extern t_lltab		g_lltab;
 
 static int			ft_format_dericode(char *deri, t_buff *rule, t_buff *term)
 {
 	size_t			i;
 
 	if (!(ft_strcmp(deri, "ε")))
-		return (rule->cr + term->cr + 1);
+		return (rule->cr + term->cr - 1);
 	i = 0;
 	while (i < rule->cr)
 	{
 		if (!(ft_strcmp(deri, ((t_rule *)rule->buff)[i].rule)))
-			return ((int)i);
+			return ((int)((t_rule *)rule->buff)[i].i);
 		i++;
 	}
 	i = 0;
 	while (i < term->cr)
 	{
 		if (!(ft_strcmp(deri, ((t_term *)term->buff)[i].term)))
-			return ((int)(rule->cr + i));
+			return ((int)(rule->cr - 1 + ((t_term *)term->buff)[i].i));
 		i++;
 	}
 	return (-1); // Il existe un term dans les dérivation qui n'est ni un regle ni un terminal
@@ -89,14 +90,55 @@ static int			ft_format_deri(t_buff *rule, t_buff *term)
 	return (1);
 }
 
+static int			ft_lltab_alloc(int y, int x)
+{
+	int				i;
+	int				j;
+
+	if (!(g_lltab.lltab = (int **)ft_memalloc(sizeof(int *) * y)))
+		return (CODE_ERR1);
+	i = 0;
+	while (i < y)
+	{
+		if (!(g_lltab.lltab[i] = (int *)ft_memalloc(sizeof(int) * x + 1)))
+			return (CODE_ERR1);
+		j = 0;
+		ft_putnbr(i);
+		while (j < x + 1)
+		{
+			g_lltab.lltab[i][j] = -1;
+			j++;
+		}
+		i++;
+	}
+	g_lltab.max_y = y;
+	g_lltab.max_x = x + 1;
+	ft_debug_lltab();
+	return (1);
+}
+
 extern int			ft_lltab_init(t_buff rule, t_buff term)
 {
 	int				ret;
+	size_t			i;
 
-	//ft_debug_term(term);
-	//ft_putchar('\n');
 	ft_debug_rule(rule);
+	ft_putchar('\n');
 	ret = ft_format_deri(&rule, &term);
-	ft_debug_deri();
+	if (ret > 0)
+		ret = ft_lltab_alloc(rule.cr, term.cr);
+	if (ret > 0)
+	{
+		ft_debug_deri();
+		i = 0;
+		while (i < rule.cr - 1)
+		{
+			ft_lltab_first(((t_llderi *)g_llderi.buff)[i], \
+					((t_llderi *)g_llderi.buff)[i].y , i, rule.cr - 1);
+			i++;
+		}
+		ft_debug_term(term);
+		ft_debug_lltab();
+	}
 	return (ret);
 }

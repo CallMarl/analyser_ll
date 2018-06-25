@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 19:02:03 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/06/21 16:32:01 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/06/25 15:10:35 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,36 @@
 #include "libft.h"
 #include "analyser_ll.h"
 
+extern t_lltab		g_lltab;
 extern t_buff		g_llderi;
+
+extern void			ft_debug_lltab(void)
+{
+	int				x;
+	int				y;
+
+	y = 0;
+	if (g_lltab.lltab != 0)
+	{
+		ft_putchar('\n');
+		ft_printf("x : %d\n", g_lltab.max_x);
+		ft_printf("y : %d\n", g_lltab.max_y);
+		while (y < g_lltab.max_y - 1)
+		{
+			x = 0;
+			while (x < g_lltab.max_x)
+			{
+				ft_printf("%5d", g_lltab.lltab[y][x]);
+				x++;
+				if (x < g_lltab.max_x)
+					ft_putstr(", ");
+			}
+			ft_putchar('\n');
+			y++;
+		}
+		ft_putchar('\n');
+	}
+}
 
 extern void			ft_debug_deri(void)
 {
