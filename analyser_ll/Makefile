@@ -6,7 +6,7 @@
 #    By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/08 18:58:27 by pprikazs          #+#    #+#              #
-#    Updated: 2018/06/25 14:19:12 by pprikazs         ###   ########.fr        #
+#    Updated: 2018/06/26 14:48:34 by pprikazs         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,8 +33,10 @@ SRCS = ./main.c \
 	   ./srcs/ft_debug.c \
 	   ./srcs/ft_error.c \
 	   ./srcs/ft_global.c \
-	   ./srcs/lltab/ft_lltab_init.c \
+	   ./srcs/lltab/ft_lltab_eps.c \
 	   ./srcs/lltab/ft_lltab_first.c \
+	   ./srcs/lltab/ft_lltab_follow.c \
+	   ./srcs/lltab/ft_lltab_init.c \
 	   ./srcs/parse/ft_parse_gramma.c \
 	   ./srcs/parse/ft_parse_readline.c \
 	   ./srcs/parse/ft_parse_readrules.c \

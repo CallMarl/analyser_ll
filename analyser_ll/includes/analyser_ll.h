@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 19:02:53 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/06/25 15:51:37 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/06/26 14:47:20 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,10 @@ void					ft_debug_deri(void);
 void					ft_debug_rule(t_buff rule);
 void					ft_debug_term(t_buff term);
 void					ft_debug_lltab(void);
-int						ft_lltab_init(t_buff term, t_buff rule);
+int						ft_lltab_eps(t_llderi rule, int mid);
 int						ft_lltab_first(t_llderi rule, int y, int ind, int mid);
+int						ft_lltab_follow(t_llderi rule, int y, int ind, int mid);
+int						ft_lltab_init(t_buff term, t_buff rule);
 int						ft_parse_gramma(char *gramma_file, t_buff *term, t_buff *nterm);
 int						ft_parse_readline(char *line, t_buff *term, t_buff *rule);
 int						ft_parse_readrule(char *line, t_buff *rule);

@@ -6,12 +6,12 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/22 15:45:28 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/06/25 17:52:17 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/06/26 15:16:50 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "analyser_ll.h"
+#include "libft.h"
 
 extern t_buff		g_llderi;
 extern t_lltab		g_lltab;

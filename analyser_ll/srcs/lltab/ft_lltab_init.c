@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/20 14:32:50 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/06/25 16:45:57 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/06/26 13:34:36 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,14 @@ extern int			ft_lltab_init(t_buff rule, t_buff term)
 			ft_lltab_first(((t_llderi *)g_llderi.buff)[i], \
 					((t_llderi *)g_llderi.buff)[i].y , i, rule.cr - 1);
 			i++;
+		}
+		i = 0;
+		while (i < rule.cr - 1)
+		{
+			if (ft_lltab_eps(((t_llderi *)g_llderi.buff)[i], rule.cr - 1) == 1)
+			{
+				ft_lltab_follow();
+			}
 		}
 		ft_debug_term(term);
 		ft_debug_lltab();
