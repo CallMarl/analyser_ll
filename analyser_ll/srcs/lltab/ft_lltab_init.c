@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/20 14:32:50 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/06/26 13:34:36 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/06/27 17:57:35 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int			ft_format_dericode(char *deri, t_buff *rule, t_buff *term)
 			return ((int)(rule->cr - 1 + ((t_term *)term->buff)[i].i));
 		i++;
 	}
-	return (-1); // Il existe un term dans les dérivation qui n'est ni un regle ni un terminal
+	return (-5); // Il existe un term dans les dérivation qui n'est ni un regle ni un terminal
 }
 
 static int			ft_format_setderi(t_rule *cur, t_buff *rule, \
@@ -103,7 +103,6 @@ static int			ft_lltab_alloc(int y, int x)
 		if (!(g_lltab.lltab[i] = (int *)ft_memalloc(sizeof(int) * x + 1)))
 			return (CODE_ERR1);
 		j = 0;
-		ft_putnbr(i);
 		while (j < x + 1)
 		{
 			g_lltab.lltab[i][j] = -1;
@@ -124,28 +123,32 @@ extern int			ft_lltab_init(t_buff rule, t_buff term)
 
 	ft_debug_rule(rule);
 	ft_putchar('\n');
+	ft_debug_term(term);
 	ret = ft_format_deri(&rule, &term);
 	if (ret > 0)
 		ret = ft_lltab_alloc(rule.cr, term.cr);
 	if (ret > 0)
 	{
 		ft_debug_deri();
+		ft_debug_term(term);
 		i = 0;
-		while (i < rule.cr - 1)
+		while (i < rule.cr)
 		{
 			ft_lltab_first(((t_llderi *)g_llderi.buff)[i], \
 					((t_llderi *)g_llderi.buff)[i].y , i, rule.cr - 1);
 			i++;
 		}
 		i = 0;
-		while (i < rule.cr - 1)
+		ft_debug_lltab();
+		while (i < rule.cr)
 		{
 			if (ft_lltab_eps(((t_llderi *)g_llderi.buff)[i], rule.cr - 1) == 1)
 			{
-				ft_lltab_follow();
+				ft_lltab_follow(((t_llderi *)g_llderi.buff)[i], \
+					((t_llderi *)g_llderi.buff)[i].y, i, rule.cr);
 			}
+			i++;
 		}
-		ft_debug_term(term);
 		ft_debug_lltab();
 	}
 	return (ret);
