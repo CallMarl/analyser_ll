@@ -134,7 +134,7 @@ EXP :: nbr somme nbr
 ```
 %%
 
-nbr somme produit moins
+nbr somme produit moins ( )
 
 %%
 
