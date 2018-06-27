@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/20 14:32:50 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/06/27 17:57:35 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/06/27 18:35:13 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,6 @@ static int			ft_lltab_alloc(int y, int x)
 	}
 	g_lltab.max_y = y;
 	g_lltab.max_x = x + 1;
-	ft_debug_lltab();
 	return (1);
 }
 
@@ -121,16 +120,11 @@ extern int			ft_lltab_init(t_buff rule, t_buff term)
 	int				ret;
 	size_t			i;
 
-	ft_debug_rule(rule);
-	ft_putchar('\n');
-	ft_debug_term(term);
 	ret = ft_format_deri(&rule, &term);
 	if (ret > 0)
 		ret = ft_lltab_alloc(rule.cr, term.cr);
 	if (ret > 0)
 	{
-		ft_debug_deri();
-		ft_debug_term(term);
 		i = 0;
 		while (i < rule.cr)
 		{
@@ -139,7 +133,6 @@ extern int			ft_lltab_init(t_buff rule, t_buff term)
 			i++;
 		}
 		i = 0;
-		ft_debug_lltab();
 		while (i < rule.cr)
 		{
 			if (ft_lltab_eps(((t_llderi *)g_llderi.buff)[i], rule.cr - 1) == 1)
@@ -149,7 +142,6 @@ extern int			ft_lltab_init(t_buff rule, t_buff term)
 			}
 			i++;
 		}
-		ft_debug_lltab();
 	}
 	return (ret);
 }

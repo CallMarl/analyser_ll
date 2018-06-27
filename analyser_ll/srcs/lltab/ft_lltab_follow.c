@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/25 17:50:42 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/06/27 17:59:46 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/06/27 18:35:30 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,23 +37,15 @@ extern int			ft_lltab_follow(t_llderi rule, int y, int ind, int mid)
 	int				tmp;
 	t_llderi		*llderi;
 
-	ft_putchar('\n');
-	ft_putstr("search ");
-	ft_putnbr(rule.y);
-	ft_putchar('\n');
 	i = 0;
 	llderi = (t_llderi *)g_llderi.buff;
 	while (i < mid)
 	{
-		ft_putstr("deri ");
-		ft_putendl(ft_itoa(i));
 		j = 0;
 		while (j < llderi[i].d_size)
 		{
-			ft_printf("%d ",llderi[i].deri[j]);
 			if (llderi[i].deri[j] == rule.y && j < llderi[i].d_size - 1)
 			{
-				ft_putendl("    find");
 				tmp = llderi[i].deri[j + 1];
 				if (tmp >= mid)
 					g_lltab.lltab[y - 1][tmp - mid + 1] = ind;
@@ -64,7 +56,6 @@ extern int			ft_lltab_follow(t_llderi rule, int y, int ind, int mid)
 				; // Ajouter $ à suivant
 			j++;
 		}
-	ft_putchar('\n');
 		i++;
 	}
 	return (1);
