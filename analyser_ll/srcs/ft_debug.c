@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 19:02:03 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/06/25 15:10:35 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/06/27 18:59:28 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ extern void			ft_debug_lltab(void)
 	y = 0;
 	if (g_lltab.lltab != 0)
 	{
-		ft_putchar('\n');
 		ft_printf("x : %d\n", g_lltab.max_x);
 		ft_printf("y : %d\n", g_lltab.max_y);
 		while (y < g_lltab.max_y - 1)
@@ -74,6 +73,7 @@ extern void			ft_debug_deri(void)
 		ft_putchar('\n');
 		i++;
 	}
+	ft_putchar('\n');
 }
 
 extern void			ft_debug_rule(t_buff rule)
@@ -85,7 +85,7 @@ extern void			ft_debug_rule(t_buff rule)
 	while (i < rule.cr)
 	{
 		tmp = ((t_rule *)rule.buff)[i];
-		ft_putstr("rule index :");
+		ft_putstr("rule index : ");
 		ft_putnbr(tmp.i);
 		ft_putchar('\n');
 		ft_putstr("rule : ");
@@ -94,6 +94,7 @@ extern void			ft_debug_rule(t_buff rule)
 		ft_putendl(tmp.deri);
 		i++;
 	}
+	ft_putchar('\n');
 }
 
 /*
@@ -114,4 +115,5 @@ extern void			ft_debug_term(t_buff term)
 		ft_putendl(tmp.term);
 		i++;
 	}
+	ft_putchar('\n');
 }

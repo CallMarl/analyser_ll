@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/20 14:32:50 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/06/27 18:35:13 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/06/27 18:58:47 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,5 +143,9 @@ extern int			ft_lltab_init(t_buff rule, t_buff term)
 			i++;
 		}
 	}
+	ft_debug_term(term);
+	ft_debug_rule(rule);
+	ft_debug_deri();
+	ft_debug_lltab();
 	return (ret);
 }
