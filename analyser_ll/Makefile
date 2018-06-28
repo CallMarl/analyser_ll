@@ -6,7 +6,7 @@
 #    By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/08 18:58:27 by pprikazs          #+#    #+#              #
-#    Updated: 2018/06/28 14:32:18 by pprikazs         ###   ########.fr        #
+#    Updated: 2018/06/28 14:53:04 by pprikazs         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ SRCS = ./main.c \
 	   ./srcs/ft_error.c \
 	   ./srcs/ft_global.c \
 	   ./srcs/export/ft_export_value.c \
+	   ./srcs/lltab/ft_llderi_init.c \
 	   ./srcs/lltab/ft_lltab_eps.c \
 	   ./srcs/lltab/ft_lltab_first.c \
 	   ./srcs/lltab/ft_lltab_follow.c \

@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 19:02:03 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/06/27 18:59:28 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/06/28 15:46:17 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ extern void			ft_debug_deri(void)
 	i = 0;
 	while (i < g_llderi.cr)
 	{
-		ft_putstr("deri index : ");
-		ft_putnbr(tmp[i].i);
 		ft_putstr("\nderi rule : ");
+		ft_putstr(tmp[i].rule);
+		ft_putstr("\nderi index : ");
 		ft_putnbr(tmp[i].y);
 		ft_putstr("\nnb vals : ");
 		ft_putnbr(tmp[i].d_size);
@@ -68,9 +68,8 @@ extern void			ft_debug_deri(void)
 			ft_putnbr((int)(tmp[i].deri[j]));
 			j++;
 			if (j == tmp[i].d_size)
-				ft_putchar('}');
+				ft_putendl("}\n");
 		}
-		ft_putchar('\n');
 		i++;
 	}
 	ft_putchar('\n');

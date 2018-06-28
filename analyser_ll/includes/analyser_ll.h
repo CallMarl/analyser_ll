@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 19:02:53 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/06/28 14:30:59 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/06/28 15:32:29 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ struct					s_lltab
 struct					s_llderi
 {
 	int					i;
+	char				*rule;
 	int					y;
 	size_t				d_size;
 	int					*deri;
@@ -93,6 +94,7 @@ void					ft_debug_rule(t_buff rule);
 void					ft_debug_term(t_buff term);
 void					ft_debug_lltab(void);
 int						ft_export_value(char *output_file, t_buff term, t_buff rule);
+int						ft_llderi_init(t_buff *rule, t_buff *term);
 int						ft_lltab_eps(t_llderi rule, int mid);
 int						ft_lltab_first(t_llderi rule, int y, int ind, int mid);
 int						ft_lltab_follow(t_llderi rule, int y, int ind, int mid);
