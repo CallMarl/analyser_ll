@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/25 17:50:42 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/06/27 18:35:30 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/06/28 14:14:09 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,10 @@ extern int			ft_lltab_follow(t_llderi rule, int y, int ind, int mid)
 			{
 				tmp = llderi[i].deri[j + 1];
 				if (tmp >= mid)
-					g_lltab.lltab[y - 1][tmp - mid + 1] = ind;
+					g_lltab.lltab[y - 1][tmp - mid] = ind;
 				else if (tmp < mid && tmp != rule.y)
-					ft_lltab_follow_first(rule.y ,tmp - mid + 1);
+					ft_lltab_follow_first(rule.y ,tmp);
+				tmp = llderi[i].deri[j + 1];
 			}
 			else if (llderi[i].deri[j] == rule.y)
 				; // Ajouter $ à suivant

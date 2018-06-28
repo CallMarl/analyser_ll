@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/20 14:32:50 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/06/27 18:58:47 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/06/28 14:13:26 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int			ft_format_dericode(char *deri, t_buff *rule, t_buff *term)
 	size_t			i;
 
 	if (!(ft_strcmp(deri, "ε")))
-		return (rule->cr + term->cr - 1);
+		return (rule->cr + term->cr);
 	i = 0;
 	while (i < rule->cr)
 	{
@@ -34,7 +34,7 @@ static int			ft_format_dericode(char *deri, t_buff *rule, t_buff *term)
 	while (i < term->cr)
 	{
 		if (!(ft_strcmp(deri, ((t_term *)term->buff)[i].term)))
-			return ((int)(rule->cr - 1 + ((t_term *)term->buff)[i].i));
+			return ((int)(rule->cr + ((t_term *)term->buff)[i].i));
 		i++;
 	}
 	return (-5); // Il existe un term dans les dérivation qui n'est ni un regle ni un terminal
@@ -129,7 +129,8 @@ extern int			ft_lltab_init(t_buff rule, t_buff term)
 		while (i < rule.cr)
 		{
 			ft_lltab_first(((t_llderi *)g_llderi.buff)[i], \
-					((t_llderi *)g_llderi.buff)[i].y , i, rule.cr - 1);
+					((t_llderi *)g_llderi.buff)[i].y , i, rule.cr);
+			ft_debug_lltab();
 			i++;
 		}
 		i = 0;
