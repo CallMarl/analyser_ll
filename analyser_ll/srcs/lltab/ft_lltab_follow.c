@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/25 17:50:42 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/06/28 14:14:09 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/06/28 16:14:50 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 extern t_buff		g_llderi;
 extern t_lltab		g_lltab;
+extern int			g_llpiv;
 
 static void			ft_lltab_follow_first(int follow, int first)
 {
@@ -30,7 +31,7 @@ static void			ft_lltab_follow_first(int follow, int first)
 	}
 }
 
-extern int			ft_lltab_follow(t_llderi rule, int y, int ind, int mid)
+extern int			ft_lltab_follow(t_llderi rule, int y, int ind)
 {
 	int				i;
 	size_t			j;
@@ -39,7 +40,7 @@ extern int			ft_lltab_follow(t_llderi rule, int y, int ind, int mid)
 
 	i = 0;
 	llderi = (t_llderi *)g_llderi.buff;
-	while (i < mid)
+	while (i < g_llpiv)
 	{
 		j = 0;
 		while (j < llderi[i].d_size)
@@ -47,9 +48,9 @@ extern int			ft_lltab_follow(t_llderi rule, int y, int ind, int mid)
 			if (llderi[i].deri[j] == rule.y && j < llderi[i].d_size - 1)
 			{
 				tmp = llderi[i].deri[j + 1];
-				if (tmp >= mid)
-					g_lltab.lltab[y - 1][tmp - mid] = ind;
-				else if (tmp < mid && tmp != rule.y)
+				if (tmp >= g_llpiv)
+					g_lltab.lltab[y - 1][tmp - g_llpiv] = ind;
+				else if (tmp < g_llpiv && tmp != rule.y)
 					ft_lltab_follow_first(rule.y ,tmp);
 				tmp = llderi[i].deri[j + 1];
 			}

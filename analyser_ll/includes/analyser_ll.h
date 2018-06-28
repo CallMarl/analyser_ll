@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 19:02:53 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/06/28 15:32:29 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/06/28 16:14:25 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ struct					s_lltab
 };
 
 /*
-** i index de la dérivation
+** nom de la dérivation
 ** y index de la regle dérivé
 ** taille du tableau de dérivation
 ** table des dérivation
@@ -95,9 +95,9 @@ void					ft_debug_term(t_buff term);
 void					ft_debug_lltab(void);
 int						ft_export_value(char *output_file, t_buff term, t_buff rule);
 int						ft_llderi_init(t_buff *rule, t_buff *term);
-int						ft_lltab_eps(t_llderi rule, int mid);
-int						ft_lltab_first(t_llderi rule, int y, int ind, int mid);
-int						ft_lltab_follow(t_llderi rule, int y, int ind, int mid);
+int						ft_lltab_eps(t_llderi rule);
+int						ft_lltab_first(t_llderi rule, int y, int ind);
+int						ft_lltab_follow(t_llderi rule, int y, int ind);
 int						ft_lltab_init(t_buff term, t_buff rule);
 int						ft_parse_gramma(char *gramma_file, t_buff *term, t_buff *nterm);
 int						ft_parse_readline(char *line, t_buff *term, t_buff *rule);
