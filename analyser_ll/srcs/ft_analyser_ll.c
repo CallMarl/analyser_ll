@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 19:00:12 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/06/20 17:31:15 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/06/28 14:24:59 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int			ft_analyser_ll_aux(char *gramma_file, char *output_file)
 		ret = ft_lltab_init(rule, term);
 	if (ret < 0)
 		ft_error(ret);
-	//ft_export_value(t_buff term, t_buff rule);
+	ft_export_value(output_file, term, rule);
 	if (term.buff != 0)
 		ft_memdel((void **)&term.buff);
 	if (rule.buff != 0)
