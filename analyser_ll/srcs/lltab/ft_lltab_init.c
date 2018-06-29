@@ -6,16 +6,18 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/20 14:32:50 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/06/29 15:58:41 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/06/29 17:28:47 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
 #include "analyser_ll.h"
+#include "liball.h"
 #include "libft.h"
 
 extern t_buff		g_llderi;
 extern t_lltab		g_lltab;
+extern t_buff		g_llterm;
 extern int			g_llpiv;
 
 /*
@@ -88,22 +90,22 @@ static int			ft_lltab_alloc(int y, int x)
 	return (1);
 }
 
-extern int			ft_lltab_init(t_buff rule, t_buff term)
+extern int			ft_lltab_init(t_buff rule)
 {
 	int				ret;
 	int				max_y;
 
-	ret = ft_llderi_init(&rule, &term);
+	ret = ft_llderi_init(&rule);
 	if (ret > 0)
 	{
 		max_y = ft_lltab_getnbrule();
-		ret = ft_lltab_alloc(max_y, term.cr);
+		ret = ft_lltab_alloc(max_y, g_llterm.cr);
 	}
 	g_llpiv = rule.cr;
 	if (ret > 0)
 		ft_lltab_initaux();
-	ft_debug_term(term);
-	ft_debug_deri();
-	ft_debug_lltab();
+	ft_debug_llterm(g_llterm);
+	ft_debug_llderi(g_llderi);
+	ft_debug_lltab(g_lltab);
 	return (ret);
 }

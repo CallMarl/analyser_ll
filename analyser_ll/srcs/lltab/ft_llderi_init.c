@@ -6,22 +6,24 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/28 14:48:13 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/06/28 15:36:50 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/06/29 17:24:27 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
 #include "analyser_ll.h"
+#include "liball.h"
 #include "libft.h"
 
 extern t_buff		g_llderi;
+extern t_buff		g_llterm;
 
-static int			ft_llderi_setderi(char *deri, t_buff *rule, t_buff *term)
+static int			ft_llderi_setderi(char *deri, t_buff *rule)
 {
 	size_t			i;
 
 	if (!(ft_strcmp(deri, "ε")))
-		return (rule->cr + term->cr);
+		return (rule->cr + g_llterm.cr);
 	i = 0;
 	while (i < rule->cr)
 	{
@@ -30,17 +32,16 @@ static int			ft_llderi_setderi(char *deri, t_buff *rule, t_buff *term)
 		i++;
 	}
 	i = 0;
-	while (i < term->cr)
+	while (i < g_llterm.cr)
 	{
-		if (!(ft_strcmp(deri, ((t_term *)term->buff)[i].term)))
-			return ((int)(rule->cr + ((t_term *)term->buff)[i].i));
+		if (!(ft_strcmp(deri, ((t_llterm *)g_llterm.buff)[i].term)))
+			return ((int)(rule->cr + ((t_llterm *)g_llterm.buff)[i].i));
 		i++;
 	}
 	return (-5); // Il existe un term dans les dérivation qui n'est ni un regle ni un terminal
 }
 
-static int			ft_llderi_initaux(t_rule *cur, t_buff *rule, \
-		t_buff *term)
+static int			ft_llderi_initaux(t_rule *cur, t_buff *rule)
 {
 	char			**deri;
 	t_llderi		tmp;
@@ -55,7 +56,7 @@ static int			ft_llderi_initaux(t_rule *cur, t_buff *rule, \
 	i = 0;
 	while (deri[i] != 0)
 	{
-		if ((code = ft_llderi_setderi(deri[i], rule, term)) < 0)
+		if ((code = ft_llderi_setderi(deri[i], rule)) < 0)
 			break ;
 		tmp.deri[i++] = code;
 	}
@@ -69,7 +70,7 @@ static int			ft_llderi_initaux(t_rule *cur, t_buff *rule, \
 	return (0);
 }
 
-extern int			ft_llderi_init(t_buff *rule, t_buff *term)
+extern int			ft_llderi_init(t_buff *rule)
 {
 	size_t			i;
 	int				ret;
@@ -82,7 +83,7 @@ extern int			ft_llderi_init(t_buff *rule, t_buff *term)
 	i = 0;
 	while (i < rule->cr)
 	{
-		if ((ret = ft_llderi_initaux(&((t_rule *)rule->buff)[i], rule, term)) < 0)
+		if ((ret = ft_llderi_initaux(&((t_rule *)rule->buff)[i], rule)) < 0)
 			return (ret);
 		i++;
 	}

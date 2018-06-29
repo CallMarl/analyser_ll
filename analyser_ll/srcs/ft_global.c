@@ -6,11 +6,12 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 19:02:09 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/06/28 16:07:35 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/06/29 17:21:51 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "analyser_ll.h"
+#include "libft.h"
+#include "liball.h"
 
 /*
 ** Ensemble des varibles globales, ceci correspond également au données qui
@@ -31,6 +32,10 @@ t_lltab		g_lltab = {
 */
 
 t_buff		g_llderi = {
+	0, 0, 0, 0
+};
+
+t_buff		g_llterm = {
 	0, 0, 0, 0
 };
 

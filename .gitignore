@@ -1,8 +1,12 @@
 # Specifique file
 analyser_ll/includes/libft.h
+analyser_ll/includes/liball.h
 
 # Binary files
 analyser_ll/analyser_ll
+
+# project extention
+*.all
 
 # Swap
 [._]*.s[a-v][a-z]

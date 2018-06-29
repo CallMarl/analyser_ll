@@ -6,18 +6,19 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 16:11:28 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/06/14 18:07:06 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/06/29 17:07:17 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
 #include "analyser_ll.h"
+#include "liball.h"
 #include "libft.h"
 
 static int			ft_parse_readterm_aux(t_buff *term, char **arr)
 {
 	size_t			i;
-	t_term			tmp;
+	t_llterm		tmp;
 	int				ret;
 
 	i = 0;

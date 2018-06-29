@@ -1,35 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_export_value.c                                  :+:      :+:    :+:   */
+/*   ft_debug_lltab.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/28 14:22:46 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/06/29 17:23:15 by pprikazs         ###   ########.fr       */
+/*   Created: 2018/06/29 16:50:04 by pprikazs          #+#    #+#             */
+/*   Updated: 2018/06/29 16:53:42 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fcntl.h>
-#include "analyser_ll.h"
 #include "liball.h"
 #include "libft.h"
 
-static int			ft_export_lltab(int fd)
+extern void			ft_debug_lltab(t_lltab lltab)
 {
-	(void)fd;
-	return (0);
-}
+	int				x;
+	int				y;
 
-extern int			ft_export_value(char *output_file)
-{
-	int				fd;
-
-	// Ajouter le gestion des erreur à l'ouverture du fichier
-	if ((fd = open(output_file, O_CREAT | O_WRONLY)) < -1)
-		return (-1);
-	ft_putendl(output_file);
-	ft_export_lltab(fd);
-	(void)output_file;
-	return (1);
+	y = 0;
+	if (lltab.lltab != 0)
+	{
+		ft_printf("x : %d\n", lltab.max_x);
+		ft_printf("y : %d\n", lltab.max_y);
+		while (y < lltab.max_y - 1)
+		{
+			x = 0;
+			while (x < lltab.max_x)
+			{
+				ft_printf("%5d", lltab.lltab[y][x]);
+				x++;
+				if (x < lltab.max_x)
+					ft_putstr(", ");
+			}
+			ft_putchar('\n');
+			y++;
+		}
+		ft_putchar('\n');
+	}
 }

@@ -1,35 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_export_value.c                                  :+:      :+:    :+:   */
+/*   ft_debug_llterm.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/28 14:22:46 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/06/29 17:23:15 by pprikazs         ###   ########.fr       */
+/*   Created: 2018/06/29 16:50:53 by pprikazs          #+#    #+#             */
+/*   Updated: 2018/06/29 17:32:35 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fcntl.h>
-#include "analyser_ll.h"
+#include <stddef.h>
 #include "liball.h"
 #include "libft.h"
 
-static int			ft_export_lltab(int fd)
-{
-	(void)fd;
-	return (0);
-}
+/*
+** Bien que non présent dans le display de ce debugging le caractere `ε`
+** est implicitement inclut dans le table d'analyse ll.
+*/
 
-extern int			ft_export_value(char *output_file)
+extern void			ft_debug_llterm(t_buff llterm)
 {
-	int				fd;
+	t_llterm		tmp;
+	size_t			i;
 
-	// Ajouter le gestion des erreur à l'ouverture du fichier
-	if ((fd = open(output_file, O_CREAT | O_WRONLY)) < -1)
-		return (-1);
-	ft_putendl(output_file);
-	ft_export_lltab(fd);
-	(void)output_file;
-	return (1);
+	i = 0;
+	while (i < llterm.cr)
+	{
+		tmp = ((t_llterm *)llterm.buff)[i];
+		ft_putstr("term : ");
+		ft_putendl(tmp.term);
+		i++;
+	}
+	ft_putchar('\n');
 }

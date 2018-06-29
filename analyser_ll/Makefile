@@ -6,7 +6,7 @@
 #    By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/08 18:58:27 by pprikazs          #+#    #+#              #
-#    Updated: 2018/06/28 14:53:04 by pprikazs         ###   ########.fr        #
+#    Updated: 2018/06/29 17:30:33 by pprikazs         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,8 +47,11 @@ SRCS = ./main.c \
 OBJ = $(SRCS:./%.c=./%.o)
 
 LIB_DIR = ../libs
-LIBS = ./libs/libft.a
-export LIB_NEED = ./libft
+LIBS = ./libs/libft.a \
+	   ./libs/liball.a
+
+export LIB_NEED = ./libft \
+	./liball
 
 .PHONY: all clean fclean re
 .SUFFIXES:
