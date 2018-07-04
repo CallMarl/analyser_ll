@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lltab_init.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pprikazs <pprikazs@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/20 14:32:50 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/06/29 17:28:47 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/07/03 20:30:19 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ extern t_buff		g_llterm;
 extern int			g_llpiv;
 
 /*
-** Calcule de du nombre de regle, car g_llderi.cr correspond au nombre 
+** Calcule de du nombre de regle, car g_llderi.cr correspond au nombre
 ** de dérivation et non au nombre de règle (cas du ou).
 */
 
@@ -106,6 +106,6 @@ extern int			ft_lltab_init(t_buff rule)
 		ft_lltab_initaux();
 	ft_debug_llterm(g_llterm);
 	ft_debug_llderi(g_llderi);
-	ft_debug_lltab(g_lltab);
+	//ft_debug_lltab(g_lltab);
 	return (ret);
 }

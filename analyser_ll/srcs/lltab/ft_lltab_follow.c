@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lltab_follow.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pprikazs <pprikazs@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/25 17:50:42 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/06/28 16:14:50 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/07/03 13:21:29 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ extern int			ft_lltab_follow(t_llderi rule, int y, int ind)
 				tmp = llderi[i].deri[j + 1];
 			}
 			else if (llderi[i].deri[j] == rule.y)
-				; // Ajouter $ à suivant
+				{;} // Ajouter $ à suivant
 			j++;
 		}
 		i++;

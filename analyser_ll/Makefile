@@ -3,19 +3,18 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: pprikazs <pprikazs@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/08 18:58:27 by pprikazs          #+#    #+#              #
-#    Updated: 2018/06/29 17:30:33 by pprikazs         ###   ########.fr        #
+#    Updated: 2018/07/04 18:12:37 by pprikazs         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = analyser_ll
 CC = gcc
-
-DEBUG = no
 FLAGS = -Wall -Wextra -Werror
 
+DEBUG = no
 ifeq ($(DEBUG), yes)
 	FLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 endif
@@ -24,27 +23,36 @@ NOFLAGS = no
 ifeq ($(NOFLAGS), yes)
 	FLAGS = -g -w
 endif
-	
+
 DEPS = includes/*.h Makefile
 INCLUDES = -I./includes/
 
-SRCS = ./main.c \
-	   ./srcs/ft_analyser_ll.c \
-	   ./srcs/ft_debug.c \
-	   ./srcs/ft_error.c \
-	   ./srcs/ft_global.c \
-	   ./srcs/export/ft_export_value.c \
-	   ./srcs/lltab/ft_llderi_init.c \
-	   ./srcs/lltab/ft_lltab_eps.c \
-	   ./srcs/lltab/ft_lltab_first.c \
-	   ./srcs/lltab/ft_lltab_follow.c \
-	   ./srcs/lltab/ft_lltab_init.c \
-	   ./srcs/parse/ft_parse_gramma.c \
-	   ./srcs/parse/ft_parse_readline.c \
-	   ./srcs/parse/ft_parse_readrules.c \
-	   ./srcs/parse/ft_parse_readterm.c
+VPATH = .:./srcs:./srcs/export:./srcs/lltab:./srcs/parse
 
-OBJ = $(SRCS:./%.c=./%.o)
+#./
+SRCS = main.c
+#./srcs/
+SRCS += ft_analyser_ll.c \
+	   ft_debug.c \
+	   ft_error.c \
+	   ft_global.c
+#./srcs/export/
+SRCS += ft_export_value.c
+#./srcs/lltab/
+SRCS += ft_llderi_init.c \
+	   ft_lltab_eps.c \
+	   ft_lltab_first.c \
+	   ft_lltab_follow.c \
+	   ft_lltab_init.c
+#./srcs/parse
+SRCS += ft_parse_gramma.c \
+	   ft_parse_readline.c \
+	   ft_parse_readrules.c \
+	   ft_parse_readterm.c
+
+OBJ_PATH = ./obj/
+OBJ_NAME = $(SRCS:.c=.o)
+OBJ = $(addprefix $(OBJ_PATH),$(OBJ_NAME))
 
 LIB_DIR = ../libs
 LIBS = ./libs/libft.a \
@@ -56,15 +64,18 @@ export LIB_NEED = ./libft \
 .PHONY: all clean fclean re
 .SUFFIXES:
 
-all : $(NAME)
-
-%.o : %.c
+$(OBJ_PATH)%.o : %.c
 	$(CC) $(INCLUDES) -c $< -o $@ $(FLAGS)
 
-$(NAME) : $(OBJ) $(DEPS)
+$(NAME) : init $(OBJ) $(DEPS)
 	@echo "Compilation" $(NAME) "..."
 	@$(MAKE) -C $(LIB_DIR)
 	@$(CC) $(OBJ) -o $@ $(LIBS) $(FLAGS)
+
+all : $(NAME)
+
+init :
+	@sh init.sh
 
 clean :
 	@$(MAKE) clean -C $(LIB_DIR)
