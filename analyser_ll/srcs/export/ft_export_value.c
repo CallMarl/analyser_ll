@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/28 14:22:46 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/06/29 18:50:49 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/07/06 11:08:08 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int			ft_export_lltab(int fd)
 	return (0);
 }
 
-static int			ft_useracces(int right)
+static int			ft_useraccess(int right)
 {
 	int				ret;
 
@@ -41,7 +41,7 @@ static int			ft_useracces(int right)
 	return (ret);
 }
 
-static int			ft_otheracces(int right)
+static int			ft_otheraccess(int right)
 {
 	int				ret;
 
@@ -61,7 +61,7 @@ static int			ft_otheracces(int right)
 	return (ret);
 }
 
-static int			ft_groupacces(int right)
+static int			ft_groupaccess(int right)
 {
 	int				ret;
 
@@ -81,7 +81,7 @@ static int			ft_groupacces(int right)
 	return (ret);
 }
 
-static int			ft_openright(char *right)
+static int			ft_access(char *right)
 {
 	int				val;
 	int				cur;
@@ -90,26 +90,24 @@ static int			ft_openright(char *right)
 	ret = 0;
 	if (right == 0)
 		return (0);
-	if (!ft_strisnumber(right) || ft_strlen(right) > 3)
+	if (!ft_strisnumber(right) || ft_strlen(right) != 3)
 		return (0);
 	val = ft_atoi(right);
 	if (val <= 0)
 		return (0);
 	cur = val % 10;
 	val /= 10;
-	ft_putnbr(cur);
-	ret |= ft_otheracces(cur);
+	ret |= ft_otheraccess(cur);
 	if (val == 0)
 		return (ret);
 	cur = val % 10;
 	val /= 10;
-	ft_putnbr(cur);
-	ret |= ft_groupacces(cur);
+	ret |= ft_groupaccess(cur);
 	if (val == 0)
 		return (ret);
 	cur = val % 10;
 	val /= 10;
-	ret |= ft_useracces(cur);
+	ret |= ft_useraccess(cur);
 	return (ret);
 }
 
@@ -118,7 +116,7 @@ extern int			ft_export_value(char *output_file)
 	int				fd;
 
 	// Ajouter le gestion des erreur à l'ouverture du fichier
-	if ((fd = open(output_file, O_CREAT | O_WRONLY, ft_openright("41")) < -1))
+	if ((fd = open(output_file, O_CREAT, ft_access("755")) < -1))
 		return (-1);
 	ft_putendl(output_file);
 	ft_export_lltab(fd);
