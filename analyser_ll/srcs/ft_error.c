@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 15:58:52 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/06/18 16:32:35 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/07/10 13:39:39 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 static char		**ft_error_initmessage(void)
 {
-	static char	*err_mess[6] = {
-		0, MESS_ERR1, MESS_ERR2, MESS_ERR3, MESS_ERR4, MESS_ERR5
+	static char	*err_mess[7] = {
+		0, MESS_ERR1, MESS_ERR2, MESS_ERR3, MESS_ERR4, MESS_ERR5, MESS_ERR6
 	};
 
 	return (err_mess);

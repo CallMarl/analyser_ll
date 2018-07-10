@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/28 14:48:13 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/06/29 17:24:27 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/07/10 13:38:19 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int			ft_llderi_setderi(char *deri, t_buff *rule)
 			return ((int)(rule->cr + ((t_llterm *)g_llterm.buff)[i].i));
 		i++;
 	}
-	return (-5); // Il existe un term dans les dérivation qui n'est ni un regle ni un terminal
+	return (-6); // Il existe un term dans les dérivation qui n'est ni un regle ni un terminal
 }
 
 static int			ft_llderi_initaux(t_rule *cur, t_buff *rule)
