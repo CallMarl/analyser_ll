@@ -1,33 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_test_import.c                                   :+:      :+:    :+:   */
+/*   ft_import_lltab.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/10 15:47:37 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/07/10 17:09:19 by pprikazs         ###   ########.fr       */
+/*   Created: 2018/07/10 16:41:36 by pprikazs          #+#    #+#             */
+/*   Updated: 2018/07/10 17:22:03 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fcntl.h>
+#include <unistd.h>
 #include "liball.h"
-#include "libft.h"
 
-extern t_lltab		g_lltab;
-
-extern int			ft_test_import(int argc, char *argv[])
+extern int			ft_import_lltab(int fd, t_lltab *lltab)
 {
-	int				fd;
+	int				x;
+	int				y;
+	int				i;
+	int				j;
 
-	if (argc == 2)
+	read(fd, (void *)&x, sizeof(int));
+	read(fd, (void *)&y, sizeof(int));
+	ft_putnbr(x);
+	ft_putendl("");
+	ft_putnbr(y);
+	ft_putendl("");
+	if (ft_utils_alloclltab(lltab, y, x) == -1)
+		return (-1);
+	i = 0;
+	while (i < y)
 	{
-		if ((fd = open(argv[argc - 1], O_RDONLY)) < 0)
-			return (-1); //Erreur d'ouverture du fichier
-		ft_import_lltab(fd, &g_lltab);
-		ft_debug_lltab(g_lltab);
+		j = 0;
+		while (j < x)
+		{
+			read(fd, &lltab->lltab[i][j], sizeof(int));
+			j++;
+		}
+		i++;	
 	}
-	(void)argc;
-	(void)argv;
 	return (0);
 }

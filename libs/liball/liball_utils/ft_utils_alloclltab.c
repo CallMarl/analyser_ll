@@ -1,33 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_test_import.c                                   :+:      :+:    :+:   */
+/*   ft_utils_alloclltab.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/10 15:47:37 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/07/10 17:09:19 by pprikazs         ###   ########.fr       */
+/*   Created: 2018/07/10 16:52:30 by pprikazs          #+#    #+#             */
+/*   Updated: 2018/07/10 17:22:32 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fcntl.h>
 #include "liball.h"
 #include "libft.h"
 
-extern t_lltab		g_lltab;
-
-extern int			ft_test_import(int argc, char *argv[])
+extern int			ft_utils_alloclltab(t_lltab *lltab, int y, int x)
 {
-	int				fd;
+	int				i;
+	int				j;
 
-	if (argc == 2)
+	if (!(lltab->lltab = (int **)ft_memalloc(sizeof(int *) * y)))
+		return (-1);
+	i = 0;
+	while (i < y)
 	{
-		if ((fd = open(argv[argc - 1], O_RDONLY)) < 0)
-			return (-1); //Erreur d'ouverture du fichier
-		ft_import_lltab(fd, &g_lltab);
-		ft_debug_lltab(g_lltab);
+		if (!(lltab->lltab[i] = (int *)ft_memalloc(sizeof(int) * x + 1)))
+			return (-1);
+		j = 0;
+		while (j < x + 1)
+		{
+			lltab->lltab[i][j] = -1;
+			j++;
+		}
+		i++;
 	}
-	(void)argc;
-	(void)argv;
-	return (0);
+	ft_putnbr(x);
+	ft_putendl("");
+	ft_putnbr(y);
+	lltab->max_y = y;
+	lltab->max_x = x;
+	return (1);
 }

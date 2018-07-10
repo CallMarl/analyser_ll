@@ -6,7 +6,7 @@
 /*   By: pprikazs <pprikazs@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/20 14:32:50 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/07/03 20:30:19 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/07/10 17:23:37 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,13 @@ static void			ft_lltab_initaux(void)
 	int				i;
 
 	i = 0;
+	ft_debug_llderi(g_llderi);
 	while (i < g_llpiv)
 	{
 		ft_lltab_first(((t_llderi *)g_llderi.buff)[i], \
 				((t_llderi *)g_llderi.buff)[i].y , i);
 		i++;
-		}
+	}
 	i = 0;
 	while (i < g_llpiv)
 	{
@@ -65,31 +66,6 @@ static void			ft_lltab_initaux(void)
 	}
 }
 
-static int			ft_lltab_alloc(int y, int x)
-{
-	int				i;
-	int				j;
-
-	if (!(g_lltab.lltab = (int **)ft_memalloc(sizeof(int *) * y)))
-		return (CODE_ERR1);
-	i = 0;
-	while (i < y)
-	{
-		if (!(g_lltab.lltab[i] = (int *)ft_memalloc(sizeof(int) * x + 1)))
-			return (CODE_ERR1);
-		j = 0;
-		while (j < x + 1)
-		{
-			g_lltab.lltab[i][j] = -1;
-			j++;
-		}
-		i++;
-	}
-	g_lltab.max_y = y;
-	g_lltab.max_x = x + 1;
-	return (1);
-}
-
 extern int			ft_lltab_init(t_buff rule)
 {
 	int				ret;
@@ -99,13 +75,13 @@ extern int			ft_lltab_init(t_buff rule)
 	if (ret > 0)
 	{
 		max_y = ft_lltab_getnbrule();
-		ret = ft_lltab_alloc(max_y, g_llterm.cr);
+		ret = ft_utils_alloclltab(&g_lltab, max_y, g_llterm.cr + 1);
 	}
 	g_llpiv = rule.cr;
 	if (ret > 0)
 		ft_lltab_initaux();
 	ft_debug_llterm(g_llterm);
 	ft_debug_llderi(g_llderi);
-	//ft_debug_lltab(g_lltab);
+	ft_debug_lltab(g_lltab);
 	return (ret);
 }

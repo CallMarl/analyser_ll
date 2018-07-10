@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 19:02:53 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/07/10 13:39:05 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/07/10 16:07:57 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ struct					s_rule
 
 int						ft_analyser_ll(int argc, char **argv);
 int						ft_export_value(char *output_file);
+int						ft_export_lltab(int fd);
 int						ft_llderi_init(t_buff *rule);
 int						ft_lltab_eps(t_llderi rule);
 int						ft_lltab_first(t_llderi rule, int y, int ind);

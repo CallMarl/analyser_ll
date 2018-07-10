@@ -14,11 +14,16 @@ endif
 
 INCLUDES = -I./ \
 
-VPATH = ./liball_debug
+VPATH = ./liball_debug:./liball_import:./liball_utils
 
+#./liball_debug
 SRCS = ft_debug_llderi.c \
 	   ft_debug_lltab.c \
 	   ft_debug_llterm.c
+#./liball_import
+SRCS += ft_import_lltab.c
+#./liball_utils
+SRCS += ft_utils_alloclltab.c
 
 OBJ_PATH = ./obj/
 OBJ_NAME = $(SRCS:.c=.o)
