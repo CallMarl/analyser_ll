@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 16:41:36 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/07/10 17:22:03 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/07/10 17:25:48 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,6 @@ extern int			ft_import_lltab(int fd, t_lltab *lltab)
 
 	read(fd, (void *)&x, sizeof(int));
 	read(fd, (void *)&y, sizeof(int));
-	ft_putnbr(x);
-	ft_putendl("");
-	ft_putnbr(y);
-	ft_putendl("");
 	if (ft_utils_alloclltab(lltab, y, x) == -1)
 		return (-1);
 	i = 0;
