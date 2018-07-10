@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/22 15:45:28 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/06/28 16:13:17 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/07/10 14:24:35 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,8 @@ extern int			ft_lltab_first(t_llderi rule, int y, int ind)
 		i = 0;
 		while (i < g_llpiv && ret >= 0)
 		{
-
 			if (rule.deri[0] == ((t_llderi *)g_llderi.buff)[i].y 
-					&& (rule.deri[0] != ind))
+					&& (rule.deri[0] != ind && rule.deri[0] != rule.y))
 				ret = ft_lltab_first(((t_llderi *)g_llderi.buff)[i], y, ind);
 			i++;
 		}
