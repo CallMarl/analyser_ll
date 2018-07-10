@@ -6,13 +6,14 @@
 #    By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/08 18:58:42 by pprikazs          #+#    #+#              #
-#    Updated: 2018/06/08 18:58:45 by pprikazs         ###   ########.fr        #
+#    Updated: 2018/07/10 15:54:54 by pprikazs         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 ROOT = $(shell pwd)/
 
-PRGS = $(ROOT)/analyser_ll/
+PRGS = $(ROOT)/analyser_ll/ \
+	   $(ROOT)/test_import/
 
 .PHONY: all clean fclean re
 
