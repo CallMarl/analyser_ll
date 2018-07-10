@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 15:47:37 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/07/10 17:09:19 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/07/10 18:42:05 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "libft.h"
 
 extern t_lltab		g_lltab;
+extern t_buff		g_llderi;
 
 extern int			ft_test_import(int argc, char *argv[])
 {
@@ -26,6 +27,8 @@ extern int			ft_test_import(int argc, char *argv[])
 			return (-1); //Erreur d'ouverture du fichier
 		ft_import_lltab(fd, &g_lltab);
 		ft_debug_lltab(g_lltab);
+		ft_import_llderi(fd, &g_llderi);
+		ft_debug_llderi(g_llderi);
 	}
 	(void)argc;
 	(void)argv;

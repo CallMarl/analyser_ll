@@ -6,7 +6,7 @@
 #    By: pprikazs <pprikazs@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/08 18:58:27 by pprikazs          #+#    #+#              #
-#    Updated: 2018/07/10 16:08:20 by pprikazs         ###   ########.fr        #
+#    Updated: 2018/07/10 18:07:05 by pprikazs         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ SRCS += ft_analyser_ll.c \
 	   ft_global.c
 #./srcs/export/
 SRCS += ft_export_value.c \
+		ft_export_llderi.c \
 		ft_export_lltab.c
 #./srcs/lltab/
 SRCS += ft_llderi_init.c \

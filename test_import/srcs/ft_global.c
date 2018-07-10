@@ -6,12 +6,17 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 15:46:32 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/07/10 17:10:52 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/07/10 18:39:46 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "liball.h"
+#include "libft.h"
 
 t_lltab g_lltab = {
 	0, 0, 0
+};
+
+t_buff g_llderi = {
+	0, 0, 0, 0
 };

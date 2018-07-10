@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/29 16:33:04 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/07/10 17:09:44 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/07/10 18:41:38 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ struct					s_lltab
 
 struct					s_llderi
 {
-	int					i;
 	char				*rule;
 	int					y;
 	size_t				d_size;
@@ -72,6 +71,8 @@ void					ft_debug_lltab(t_lltab lltab);
 void					ft_debug_llterm(t_buff llterm);
 
 int						ft_import_lltab(int fd, t_lltab *lltab);
+int						ft_import_llderi(int fd, t_buff *llderi);
 
 int						ft_utils_alloclltab(t_lltab *lltab, int y, int x);
+
 #endif
