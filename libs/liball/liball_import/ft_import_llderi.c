@@ -6,10 +6,11 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 18:14:12 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/07/10 18:41:41 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/07/12 16:33:56 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stddef.h>
 #include <unistd.h>
 #include "libft.h"
 #include "liball.h"
@@ -17,15 +18,20 @@
 static int			ft_import_llderi_aux(int fd, t_llderi *deri)
 {
 	size_t			len;
-	int				i;
+	size_t			i;
 
 	read(fd, &len, sizeof(size_t));
+	ft_putnbr(len);
+	ft_putendl("");
 	if (!(deri->rule = ft_strnew(len)))
 		return (-1);
-	read(fd, &deri->rule, sizeof(char) * len);
-	read(fd, &deri->y, sizeof(size_t));
+	read(fd, deri->rule, sizeof(char) * len);
+	read(fd, &deri->y, sizeof(int));
+	read(fd, &deri->d_size, sizeof(size_t));
+	if (!(deri->deri = (int *)ft_memalloc(sizeof(int) * deri->d_size)))
+		return (-1);
 	i = 0;
-	while (i < deri->y)
+	while (i < deri->d_size)
 	{
 		read(fd, &deri->deri[i], sizeof(int));
 		i++;

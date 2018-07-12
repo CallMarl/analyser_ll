@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 15:47:37 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/07/10 18:42:05 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/07/12 16:04:09 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,13 @@ extern int			ft_test_import(int argc, char *argv[])
 		ft_import_lltab(fd, &g_lltab);
 		ft_debug_lltab(g_lltab);
 		ft_import_llderi(fd, &g_llderi);
+		ft_putstr("cr : ");
+		ft_putnbr(g_llderi.cr);
+		ft_putendl("");
+		ft_putnbr(g_llderi.e_size);
+		ft_putendl("");
+		ft_putnbr(g_llderi.b_size);
+		ft_putendl("");
 		ft_debug_llderi(g_llderi);
 	}
 	(void)argc;

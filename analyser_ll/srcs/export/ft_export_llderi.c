@@ -6,12 +6,12 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 17:30:36 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/07/10 18:09:02 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/07/12 17:11:29 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include <stddef.h>
+#include <unistd.h>
 #include "analyser_ll.h"
 #include "liball.h"
 #include "libft.h"
@@ -27,9 +27,14 @@ static void			ft_export_llderi_aux(int fd, t_llderi llderi)
 	if (llderi.deri != 0)
 		len = ft_strlen(llderi.rule);
 	write(fd, &len, sizeof(size_t));
-	write(fd, llderi.deri, sizeof(char) * len);
+	i = 0;
+	while (i < len)
+	{
+		write(fd, &llderi.rule[i], sizeof(char));
+		i++;
+	}
 	write(fd, &llderi.y, sizeof(int));
-	write(fd, &llderi.d_size, sizeof(int));
+	write(fd, &llderi.d_size, sizeof(size_t));
 	i = 0;
 	while (i < llderi.d_size)
 	{

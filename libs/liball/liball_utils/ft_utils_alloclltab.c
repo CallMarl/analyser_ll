@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 16:52:30 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/07/10 17:22:32 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/07/12 15:55:17 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,6 @@ extern int			ft_utils_alloclltab(t_lltab *lltab, int y, int x)
 		}
 		i++;
 	}
-	ft_putnbr(x);
-	ft_putendl("");
-	ft_putnbr(y);
 	lltab->max_y = y;
 	lltab->max_x = x;
 	return (1);
