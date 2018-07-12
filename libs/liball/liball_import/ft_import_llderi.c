@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 18:14:12 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/07/12 16:33:56 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/07/12 17:47:11 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ static int			ft_import_llderi_aux(int fd, t_llderi *deri)
 	size_t			i;
 
 	read(fd, &len, sizeof(size_t));
-	ft_putnbr(len);
-	ft_putendl("");
 	if (!(deri->rule = ft_strnew(len)))
 		return (-1);
 	read(fd, deri->rule, sizeof(char) * len);

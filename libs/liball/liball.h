@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/29 16:33:04 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/07/12 17:07:54 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/07/12 17:35:33 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void					ft_debug_llterm(t_buff llterm);
 
 int						ft_import_lltab(int fd, t_lltab *lltab);
 int						ft_import_llderi(int fd, t_buff *llderi);
+int						ft_import_llterm(int fd, t_buff *llterm);
 
 int						ft_utils_alloclltab(t_lltab *lltab, int y, int x);
 

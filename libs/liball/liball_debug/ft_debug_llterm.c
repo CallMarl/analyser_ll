@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/29 16:50:53 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/06/29 17:32:35 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/07/12 18:17:33 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ extern void			ft_debug_llterm(t_buff llterm)
 	size_t			i;
 
 	i = 0;
+	ft_putchar('\n');
 	while (i < llterm.cr)
 	{
 		tmp = ((t_llterm *)llterm.buff)[i];
