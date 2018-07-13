@@ -4,6 +4,7 @@ analyser_ll/includes/liball.h
 
 # Binary files
 analyser_ll/analyser_ll
+test_import/test_import
 
 # project extention
 *.all
