@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 17:17:50 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/07/12 17:33:06 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/07/13 10:33:16 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,11 @@
 static int			ft_import_llterm_aux(int fd, t_llterm *term)
 {
 	size_t			len;
-	size_t			i;
 
 	read(fd, &term->i, sizeof(int));
 	read(fd, &len, sizeof(size_t));
 	if (!(term->term = ft_strnew(len)))
 		return (-1);
-	i = 0;
 	read(fd, term->term, sizeof(char) * len);
 	return (0);
 }
