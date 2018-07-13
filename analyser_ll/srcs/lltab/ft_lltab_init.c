@@ -6,7 +6,7 @@
 /*   By: pprikazs <pprikazs@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/20 14:32:50 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/07/10 17:23:37 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/07/13 14:29:05 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ static void			ft_lltab_initaux(void)
 	int				i;
 
 	i = 0;
-	ft_debug_llderi(g_llderi);
 	while (i < g_llpiv)
 	{
 		ft_lltab_first(((t_llderi *)g_llderi.buff)[i], \
