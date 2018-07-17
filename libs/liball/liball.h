@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/29 16:33:04 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/07/12 17:35:33 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/07/17 17:41:34 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,6 @@
 # define LIBALL_H
 
 # include "libft.h"
-
-/*
-** Definition de la reconnaissance d'un type de variable, formatage du fichier
-** binaire.
-*/
-
-# define LL_TYPE_POINTER 128
-# define LL_TYPE_LONG 8
-# define LL_TYPE_INT 4
-# define LL_TYPE_SHORT 2
-# define LL_TYPE_CHAR 1
 
 typedef struct s_lltab	t_lltab;
 typedef struct s_llderi	t_llderi;
@@ -70,6 +59,7 @@ void					ft_debug_llderi(t_buff llderi);
 void					ft_debug_lltab(t_lltab lltab);
 void					ft_debug_llterm(t_buff llterm);
 
+int						ft_import(int fd, t_lltab *lltab, t_buff *llderi, t_buff *llterm)
 int						ft_import_lltab(int fd, t_lltab *lltab);
 int						ft_import_llderi(int fd, t_buff *llderi);
 int						ft_import_llterm(int fd, t_buff *llterm);
