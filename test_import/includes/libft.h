@@ -1,1 +1,1 @@
-/Users/pprikazs/Documents/C_project/analyser_ll/libs/libft/libft.h
+/home/CallMarl/Documents/analyser_ll/libs/libft/libft.h

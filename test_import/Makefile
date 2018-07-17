@@ -6,7 +6,7 @@
 #    By: pprikazs <pprikazs@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/08 18:58:27 by pprikazs          #+#    #+#              #
-#    Updated: 2018/07/10 15:56:29 by pprikazs         ###   ########.fr        #
+#*   Updated: 2018/07/13 14:47:17 by                  ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,7 @@ $(OBJ_PATH)%.o : %.c
 $(NAME) : init $(OBJ) $(DEPS)
 	@echo "Compilation" $(NAME) "..."
 	@$(MAKE) -C $(LIB_DIR)
-	@$(CC) $(OBJ) -o $@ $(LIBS) $(FLAGS)
+	@$(CC) -L./libs $(OBJ) -Wl,--start-group -lft -lall -Wl,--end-group -o $@  $(FLAGS)
 
 all : $(NAME)
 

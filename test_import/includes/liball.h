@@ -1,1 +1,1 @@
-/Users/pprikazs/Documents/C_project/analyser_ll/libs/liball/liball.h
+/home/CallMarl/Documents/analyser_ll/libs/liball/liball.h
