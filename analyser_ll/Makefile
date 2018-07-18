@@ -6,7 +6,7 @@
 #    By: pprikazs <pprikazs@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/08 18:58:27 by pprikazs          #+#    #+#              #
-#*   Updated: 2018/07/17 15:18:16 by                  ###   ########.fr       *#
+#*   Updated: 2018/07/18 10:38:53 by                  ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,15 +78,11 @@ export LIB_NEED = ./libft \
 $(OBJ_PATH)%.o : %.c
 	$(CC) $(INCLUDES) -c $< -o $@ $(FLAGS)
 
-$(NAME) : init $(OBJ) $(DEPS)
-	@echo "Compilation" $(NAME) "..."
+$(NAME) : $(OBJ) $(DEPS)
 	@$(MAKE) -C $(LIB_DIR)
 	@$(CC) $(OBJ) -o $@ $(LIBS) $(FLAGS)
 
 all : $(NAME)
-
-init :
-	@sh init.sh
 
 clean :
 	@$(MAKE) clean -C $(LIB_DIR)
@@ -98,4 +94,14 @@ fclean :
 
 re :
 	@$(MAKE) fclean
+	@$(MAKE) all
+
+lclean :
+	@rm -f $(OBJ)
+
+lfclean :
+	@rm -f $(OBJ) $(NAME)
+
+lre :
+	@$(MAKE) flclean
 	@$(MAKE) all

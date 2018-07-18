@@ -21,7 +21,8 @@ SRCS = ft_debug_llderi.c \
 	   ft_debug_lltab.c \
 	   ft_debug_llterm.c
 #./liball_import
-SRCS += ft_import_llderi.c \
+SRCS += ft_import.c \
+		ft_import_llderi.c \
 		ft_import_lltab.c \
 		ft_import_llterm.c
 #./liball_utils
