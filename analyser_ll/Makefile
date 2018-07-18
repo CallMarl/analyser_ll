@@ -6,7 +6,7 @@
 #    By: pprikazs <pprikazs@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/08 18:58:27 by pprikazs          #+#    #+#              #
-#    Updated: 2018/07/13 14:56:45 by pprikazs         ###   ########.fr        #
+#*   Updated: 2018/07/17 15:18:16 by                  ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,9 +59,9 @@ OBJ = $(addprefix $(OBJ_PATH),$(OBJ_NAME))
 
 LIB_DIR = ../libs
 LIBS = -Wl,--start-group \
-	   ./libs/libft.a \
-	   ./libs/liball.a \
-	   -Wl,--end-group
+       ./libs/libft.a \
+       ./libs/liball.a \
+       -Wl,--end-group
 
 export LIB_NEED = ./libft \
 	./liball

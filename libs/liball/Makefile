@@ -41,7 +41,7 @@ $(OBJ_PATH)%.o : %.c
 	gcc $(INCLUDES) -c $< -o $@ $(FLAGS)
 
 $(NAME) : init $(OBJ) $(DEPS)
-	@$(CC) -rc $@ $(OBJ);
+	@$(CC) -rcs $@ $(OBJ);
 
 all : $(NAME)
 
