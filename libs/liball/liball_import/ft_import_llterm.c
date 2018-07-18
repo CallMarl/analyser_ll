@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 17:17:50 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/07/18 17:41:42 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/07/18 17:45:02 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ extern int			ft_import_llterm(t_buff *gmr, t_buff *llterm, int *cr)
 	if (!(llterm->buff = (t_llterm *)ft_memalloc(llterm->e_size * llterm->b_size)))
 		return (-1);
 	i = 0;
-	while (i < llterm->cr)
+	while (i < llterm->b_size)
 	{
 		if ((ft_import_llterm_aux(gmr, &((t_llterm *)llterm->buff)[i], cr)) == -1)
 			return (-1);

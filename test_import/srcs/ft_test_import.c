@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 15:47:37 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/07/18 14:59:48 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/07/18 17:44:15 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ extern int			ft_test_import(int argc, char *argv[])
 	{
 		if ((fd = open(argv[argc - 1], O_RDONLY)) < 0)
 			return (-1); //Erreur d'ouverture du fichier
-		ft_import(fd, &g_lltab, &g_llderi, &g_llterm);
+		ft_import_all(fd, &g_lltab, &g_llderi, &g_llterm);
 		ft_putendl("out");
 		{
 			ft_debug_lltab(g_lltab);

@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 18:14:12 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/07/18 17:40:20 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/07/18 17:45:12 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ extern int			ft_import_llderi(t_buff *gmr, t_buff *llderi, int *cr)
 	if (!(llderi->buff = ft_memalloc(llderi->e_size * llderi->b_size)))
 		return (-1);
 	i = 0;
-	while (i < llderi->cr)
+	while (i < llderi->b_size)
 	{
 		if (ft_import_llderi_aux(gmr, &((t_llderi *)llderi->buff)[i], cr) == -1)
 			return (-1);
