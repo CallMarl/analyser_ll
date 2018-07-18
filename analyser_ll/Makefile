@@ -6,7 +6,7 @@
 #    By: pprikazs <pprikazs@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/08 18:58:27 by pprikazs          #+#    #+#              #
-#*   Updated: 2018/07/17 16:23:55 by                  ###   ########.fr       *#
+#*   Updated: 2018/07/18 10:38:53 by                  ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -88,4 +88,14 @@ fclean :
 
 re :
 	@$(MAKE) fclean
+	@$(MAKE) all
+
+lclean :
+	@rm -f $(OBJ)
+
+lfclean :
+	@rm -f $(OBJ) $(NAME)
+
+lre :
+	@$(MAKE) flclean
 	@$(MAKE) all
