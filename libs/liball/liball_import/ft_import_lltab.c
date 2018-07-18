@@ -6,12 +6,13 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 16:41:36 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/07/18 15:32:02 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/07/18 17:18:22 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include "liball.h"
+#include "private_liball.h"
 
 extern int			ft_import_lltab(t_buff *gmr, t_lltab *lltab, int *cr)
 {

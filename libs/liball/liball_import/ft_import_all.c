@@ -6,12 +6,13 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/17 17:30:46 by                   #+#    #+#             */
-/*   Updated: 2018/07/18 17:09:49 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/07/18 17:17:39 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "liball.h"
 #include "libft.h"
+#include "private_liball.h"
 
 /*
 ** -1 Erreur d'allocation
