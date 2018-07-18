@@ -1,6 +1,8 @@
 # Specifique file
 analyser_ll/includes/libft.h
 analyser_ll/includes/liball.h
+test_import/includes/libft.h
+test_import/includes/liball.h
 
 # Binary files
 analyser_ll/analyser_ll
