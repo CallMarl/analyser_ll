@@ -57,11 +57,17 @@ OBJ_PATH = ./obj/
 OBJ_NAME = $(SRCS:.c=.o)
 OBJ = $(addprefix $(OBJ_PATH),$(OBJ_NAME))
 
+HOME = no
 LIB_DIR = ../libs
-LIBS = -Wl,--start-group \
-       ./libs/libft.a \
-       ./libs/liball.a \
-       -Wl,--end-group
+ifeq ($(HOME),yes)
+	LIBS = -Wl,--start-group \
+	       ./libs/libft.a \
+	       ./libs/liball.a \
+	       -Wl,--end-groupa
+else
+	LIBS = ./libs/libft.a \
+		   ./libs/liball.a
+endif
 
 export LIB_NEED = ./libft \
 	./liball
