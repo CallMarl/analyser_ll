@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 15:58:52 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/07/10 13:39:39 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/07/18 12:00:08 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static char		**ft_error_initmessage(void)
 	return (err_mess);
 }
 
-void			ft_error(int err_code)
+extern void			ft_error(int err_code)
 {
 	char		**err_mess;
 
