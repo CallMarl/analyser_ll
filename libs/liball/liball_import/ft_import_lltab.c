@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 16:41:36 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/07/18 17:18:22 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/07/18 18:45:44 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ extern int			ft_import_lltab(t_buff *gmr, t_lltab *lltab, int *cr)
 
 	ft_memcpy((void *)&x, &gmr->buff[0], sizeof(int));
 	(*cr) += sizeof(int);
-	ft_putnbr(x);
 	ft_memcpy_x((void *)&y, &gmr->buff[*cr], sizeof(int));
 	(*cr) += sizeof(int);
 	if (ft_utils_alloclltab(lltab, y, x) == -1)
