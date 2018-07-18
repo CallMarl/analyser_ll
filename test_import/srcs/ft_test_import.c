@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 15:47:37 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/07/12 17:43:18 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/07/18 14:59:48 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ extern int			ft_test_import(int argc, char *argv[])
 	{
 		if ((fd = open(argv[argc - 1], O_RDONLY)) < 0)
 			return (-1); //Erreur d'ouverture du fichier
-		ft_import_lltab(fd, &g_lltab);
+		ft_import(fd, &g_lltab, &g_llderi, &g_llterm);
+		ft_putendl("out");
 		{
 			ft_debug_lltab(g_lltab);
 		}
-		ft_import_llderi(fd, &g_llderi);
 		{
 			ft_putstr("cr : ");
 			ft_putnbr(g_llderi.cr);
@@ -41,7 +41,6 @@ extern int			ft_test_import(int argc, char *argv[])
 			ft_putendl("");
 			ft_debug_llderi(g_llderi);
 		}
-		ft_import_llterm(fd, &g_llterm);
 		{
 			ft_putstr("cr : ");
 			ft_putnbr(g_llderi.cr);
