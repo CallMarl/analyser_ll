@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 18:14:12 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/07/18 15:17:05 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/07/18 17:40:20 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,16 @@ extern int			ft_import_llderi(t_buff *gmr, t_buff *llderi, int *cr)
 	ft_memcpy(&llderi->b_size, &gmr->buff[*cr], sizeof(size_t));
 	(*cr) += sizeof(size_t);
 	llderi->b_size = llderi->cr;
-	if (!(llderi->buff = ft_memalloc(llderi->e_size * llderi->cr)))
+	llderi->cr = 0;
+	if (!(llderi->buff = ft_memalloc(llderi->e_size * llderi->b_size)))
 		return (-1);
 	i = 0;
 	while (i < llderi->cr)
 	{
 		if (ft_import_llderi_aux(gmr, &((t_llderi *)llderi->buff)[i], cr) == -1)
 			return (-1);
+		else
+			(llderi->cr)++;
 		i++;
 	}
 	return (0);
