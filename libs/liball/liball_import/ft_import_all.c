@@ -6,7 +6,7 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/17 17:30:46 by                   #+#    #+#             */
-/*   Updated: 2018/07/18 16:50:03 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/07/18 17:09:49 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 ** -3 Fichier trop grand
 */
 
-extern int		ft_import(int fd, t_lltab *lltab, t_buff *llderi, t_buff *llterm)
+extern int		ft_import_all(int fd, t_lltab *lltab, t_buff *llderi, t_buff *llterm)
 {
 	int		ret;
 	int		cr;
