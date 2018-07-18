@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 15:47:37 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/07/18 17:44:15 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/07/18 18:31:12 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ extern int			ft_test_import(int argc, char *argv[])
 			ft_putendl("");
 			ft_debug_llterm(g_llterm);
 		}
+		ft_del_all(&g_lltab, &g_llderi, &g_llterm);
 	}
 	(void)argc;
 	(void)argv;

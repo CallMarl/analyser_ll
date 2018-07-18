@@ -14,12 +14,17 @@ endif
 
 INCLUDES = -I./ \
 
-VPATH = ./liball_debug:./liball_import:./liball_utils
+VPATH = ./liball_debug:./liball_del:./liball_import:./liball_utils
 
 #./liball_debug
 SRCS = ft_debug_llderi.c \
 	   ft_debug_lltab.c \
 	   ft_debug_llterm.c
+#./liball_del
+SRCS += ft_del_all.c \
+		ft_del_llderi.c \
+		ft_del_lltab.c \
+		ft_del_llterm.c
 #./liball_import
 SRCS += ft_import_all.c \
 		ft_import_llderi.c \
