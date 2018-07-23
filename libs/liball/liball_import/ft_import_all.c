@@ -6,7 +6,7 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/17 17:30:46 by                   #+#    #+#             */
-/*   Updated: 2018/07/18 17:17:39 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/07/23 11:31:37 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,6 @@ extern int		ft_import_all(int fd, t_lltab *lltab, t_buff *llderi, t_buff *llterm
 	if (ret < 0)
 		return (ret);
 	ret = ft_import_llterm(&gmr, llterm, &cr);
+	ft_buffdel(&gmr);
 	return (ret);
 }
