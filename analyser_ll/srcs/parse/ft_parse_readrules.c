@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 16:14:06 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/06/20 15:44:22 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/07/24 17:34:51 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,15 @@ static void			ft_parse_insertrule(char *line, t_buff *rule, t_rule *cur)
 		cur->rule = ft_strdup(((t_rule *)rule->buff)[rule->cr - 1].rule);
 		cur->i = ((t_rule *)rule->buff)[rule->cr - 1].i;
 	}
-	else
+	else if (rule->cr > 0)
 	{
 		cur->rule = ft_strdup(line);
 		cur->i = ((t_rule *)rule->buff)[rule->cr - 1].i + 1;
+	}
+	else
+	{
+		cur->rule = ft_strdup(line);
+		cur->i = 1;
 	}
 }
 
