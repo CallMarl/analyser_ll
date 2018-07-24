@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 17:17:50 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/07/24 16:08:39 by                  ###   ########.fr       */
+/*   Updated: 2018/07/24 18:31:26 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ static int			ft_import_llterm_aux(t_buff *gmr, t_llterm *term, int *cr)
 	if (!(term->term = ft_strnew(len)))
 		return (-1);
 	ft_memcpy(term->term, (void *)&((char *)gmr->buff)[*cr], sizeof(char) * len);
+	term->token = 0;
+	term->def = 0;
 	(*cr) += sizeof(char) * len;	
 	return (0);
 }

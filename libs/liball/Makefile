@@ -31,7 +31,9 @@ SRCS += ft_import_all.c \
 		ft_import_lltab.c \
 		ft_import_llterm.c
 #./liball_utils
-SRCS += ft_utils_alloclltab.c
+SRCS += ft_utils_addtermdef.c \
+	ft_utils_addtermtoken.c \
+	ft_utils_alloclltab.c
 
 OBJ_PATH = ./obj/
 OBJ_NAME = $(SRCS:.c=.o)
