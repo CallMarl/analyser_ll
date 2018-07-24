@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 18:14:12 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/07/18 17:45:12 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/07/24 16:02:18 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,22 +20,22 @@ static int			ft_import_llderi_aux(t_buff *gmr, t_llderi *deri, int *cr)
 	size_t			len;
 	size_t			i;
 
-	ft_memcpy((void *)&len, &gmr->buff[*cr], sizeof(size_t));
+	ft_memcpy((void *)&len, (void *)&((char *)gmr->buff)[*cr], sizeof(size_t));
 	(*cr) += sizeof(size_t);
 	if (!(deri->rule = ft_strnew(len)))
 		return (-1);
-	ft_memcpy((void *)deri->rule, &gmr->buff[*cr], sizeof(char) * len);
+	ft_memcpy((void *)deri->rule, (void *)&((char *)gmr->buff)[*cr], sizeof(char) * len);
 	(*cr) += sizeof(char) * len;
-	ft_memcpy((void *)&deri->y, &gmr->buff[*cr], sizeof(int));
+	ft_memcpy((void *)&deri->y, (void *)&((char *)gmr->buff)[*cr], sizeof(int));
 	(*cr) += sizeof(int);
-	ft_memcpy_x((void *)&deri->d_size, &gmr->buff[*cr], sizeof(size_t));
+	ft_memcpy_x((void *)&deri->d_size, (void *)&((char *)gmr->buff)[*cr], sizeof(size_t));
 	(*cr) += sizeof(size_t);
 	if (!(deri->deri = (int *)ft_memalloc(sizeof(int) * deri->d_size)))
 		return (-1);
 	i = 0;
 	while (i < deri->d_size)
 	{
-		ft_memcpy((void *)&deri->deri[i], &gmr->buff[*cr], sizeof(int));
+		ft_memcpy((void *)&deri->deri[i], (void *)&((char *)gmr->buff)[*cr], sizeof(int));
 		(*cr) += sizeof(int);
 		i++;
 	}
@@ -46,11 +46,11 @@ extern int			ft_import_llderi(t_buff *gmr, t_buff *llderi, int *cr)
 {
 	size_t			i;
 
-	ft_memcpy(&llderi->cr, &gmr->buff[*cr], sizeof(size_t));
+	ft_memcpy(&llderi->cr, (void *)&((char *)gmr->buff)[*cr], sizeof(size_t));
 	(*cr) += sizeof(size_t);
-	ft_memcpy(&llderi->e_size, &gmr->buff[*cr], sizeof(size_t));
+	ft_memcpy(&llderi->e_size, (void *)&((char *)gmr->buff)[*cr], sizeof(size_t));
 	(*cr) += sizeof(size_t);
-	ft_memcpy(&llderi->b_size, &gmr->buff[*cr], sizeof(size_t));
+	ft_memcpy(&llderi->b_size, (void *)&((char *)gmr->buff)[*cr], sizeof(size_t));
 	(*cr) += sizeof(size_t);
 	llderi->b_size = llderi->cr;
 	llderi->cr = 0;

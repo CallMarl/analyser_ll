@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 17:17:50 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/07/18 17:45:02 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/07/24 16:08:39 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ static int			ft_import_llterm_aux(t_buff *gmr, t_llterm *term, int *cr)
 {
 	size_t			len;
 
-	ft_memcpy(&term->i, &gmr->buff[*cr], sizeof(int));
+	ft_memcpy(&term->i, (void *)&((char *)gmr->buff)[*cr], sizeof(int));
 	(*cr) += sizeof(int);
-	ft_memcpy(&len, &gmr->buff[*cr], sizeof(size_t));
+	ft_memcpy(&len, (void *)&((char *)gmr->buff)[*cr], sizeof(size_t));
 	(*cr) += sizeof(size_t);
 	if (!(term->term = ft_strnew(len)))
 		return (-1);
-	ft_memcpy(term->term, &gmr->buff[*cr], sizeof(char) * len);
+	ft_memcpy(term->term, (void *)&((char *)gmr->buff)[*cr], sizeof(char) * len);
 	(*cr) += sizeof(char) * len;	
 	return (0);
 }
@@ -34,11 +34,11 @@ extern int			ft_import_llterm(t_buff *gmr, t_buff *llterm, int *cr)
 {
 	size_t			i;
 
-	ft_memcpy(&llterm->cr, &gmr->buff[*cr], sizeof(size_t));
+	ft_memcpy(&llterm->cr, (void *)&((char *)gmr->buff)[*cr], sizeof(size_t));
 	(*cr) += sizeof(size_t);
-	ft_memcpy(&llterm->e_size, &gmr->buff[*cr], sizeof(size_t));
+	ft_memcpy(&llterm->e_size, (void *)&((char *)gmr->buff)[*cr], sizeof(size_t));
 	(*cr) += sizeof(size_t);
-	ft_memcpy(&llterm->b_size, &gmr->buff[*cr], sizeof(size_t));
+	ft_memcpy(&llterm->b_size, (void *)&((char *)gmr->buff)[*cr], sizeof(size_t));
 	(*cr) += sizeof(size_t);
 	llterm->b_size = llterm->cr;
 	llterm->cr = 0;

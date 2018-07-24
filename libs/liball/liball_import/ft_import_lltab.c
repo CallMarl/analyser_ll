@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 16:41:36 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/07/18 18:45:44 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/07/24 16:07:58 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ extern int			ft_import_lltab(t_buff *gmr, t_lltab *lltab, int *cr)
 	int				i;
 	int				j;
 
-	ft_memcpy((void *)&x, &gmr->buff[0], sizeof(int));
+	ft_memcpy((void *)&x, (void *)&((char *)gmr->buff)[0], sizeof(int));
 	(*cr) += sizeof(int);
-	ft_memcpy_x((void *)&y, &gmr->buff[*cr], sizeof(int));
+	ft_memcpy_x((void *)&y, (void *)&((char *)gmr->buff)[*cr], sizeof(int));
 	(*cr) += sizeof(int);
 	if (ft_utils_alloclltab(lltab, y, x) == -1)
 		return (-1);
@@ -33,7 +33,7 @@ extern int			ft_import_lltab(t_buff *gmr, t_lltab *lltab, int *cr)
 		j = 0;
 		while (j < x)
 		{
-			ft_memcpy(&lltab->lltab[i][j], &gmr->buff[*cr], sizeof(int));
+			ft_memcpy(&lltab->lltab[i][j], (void *)&((char *)gmr->buff)[*cr], sizeof(int));
 			(*cr) += sizeof(int);
 			j++;
 		}

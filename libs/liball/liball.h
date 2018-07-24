@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/29 16:33:04 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/07/23 18:34:48 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/07/24 15:50:22 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ struct					s_llterm
 {
 	int					i;
 	char				*term;
-	int					(def *)(char *token);
+	int					(*def)(char *token);
 };
 
 void					ft_debug_llderi(t_buff llderi);
