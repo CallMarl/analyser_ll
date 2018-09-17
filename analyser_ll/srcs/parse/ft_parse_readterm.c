@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 16:11:28 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/06/29 17:07:17 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/09/17 12:25:43 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ static int			ft_parse_readterm_aux(t_buff *term, char **arr)
 
 	i = 0;
 	ret = 1;
+	tmp.token = 0;
+	tmp.def = 0;
 	while (ret > 0 && arr[i] != 0)
 	{
 		if (!(tmp.term = ft_strdup(arr[i])))
