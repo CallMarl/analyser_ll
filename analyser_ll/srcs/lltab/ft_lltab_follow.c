@@ -6,7 +6,7 @@
 /*   By: pprikazs <pprikazs@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/25 17:50:42 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/07/03 13:21:29 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/09/17 14:06:52 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,20 @@ static void			ft_lltab_follow_first(int follow, int first)
 		x++;
 	}
 }
+
+/*
+** Calcule de l'ensemble suivant pour une regle de dérivation donné:
+**
+** Pour toutes les règles de dérivation, j'itère sur l'ensemble des terminaux
+** et non-terminaux de ces règles, si lorsque j'itère je tombe sur la règle de
+** dérivation chercher alors si l'ément juste apres est un non terminal je
+** l'ajoute au tableau d'analyse. Sinon si l'élément suivant est un
+** non terminal j'ajoute l'esemble des premier du non terminal trouvé à la table
+** d'analyse.
+**
+** Sinon si aucune règle de dérivation ne suis la règle trouvé alors j'ajoute
+** $ à la table d'analyse
+*/
 
 extern int			ft_lltab_follow(t_llderi rule, int y, int ind)
 {

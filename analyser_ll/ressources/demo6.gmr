@@ -1,0 +1,33 @@
+%%
+
+s_quote d_quote b_quote
+
+alpha space
+
+%%
+
+COMAND	:: WORD COMAND
+		:: QUOTE COMAND
+
+WORD	:: ALPHA WORD
+		:: SPACE WORD
+
+ALPHA	:: alpha
+		:: ε
+
+SPACE	:: space
+		:: ε
+
+QUOTE	:: S_QUOTE
+		:: D_QUOTE
+		:: B_QUOTE
+
+S_QUOTE	:: s_quote WORD D_QUOTE WORD B_QUOTE WORD s_quote
+		:: ε
+
+D_QUOTE	:: d_quote WORD B_QUOTE WORD S_QUOTE WORD d_quote
+		:: ε
+
+B_QUOTE	:: b_quote WORD S_QUOTE WORD D_QUOTE WORD b_quote
+
+%%
