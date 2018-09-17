@@ -6,7 +6,7 @@
 #    By: pprikazs <pprikazs@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/08 18:58:27 by pprikazs          #+#    #+#              #
-#*   Updated: 2018/07/17 15:18:01 by                  ###   ########.fr       *#
+#*   Updated: 2018/09/17 20:14:58 by                  ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,7 @@ ifeq ($(HOME),yes)
 	LIBS = -Wl,--start-group \
 	       ./libs/libft.a \
 	       ./libs/liball.a \
-	       -Wl,--end-groupa
+	       -Wl,--end-group
 else
 	LIBS = ./libs/libft.a \
 		   ./libs/liball.a
