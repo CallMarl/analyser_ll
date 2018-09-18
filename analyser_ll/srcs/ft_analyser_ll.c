@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 19:00:12 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/07/17 16:48:30 by                  ###   ########.fr       */
+/*   Updated: 2018/09/18 22:40:02 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,27 +16,26 @@
 #include "libft.h"
 
 extern t_buff		g_llterm;
+extern t_buff		g_llderi;
+extern int			g_llpiv;
 
 static int			ft_analyser_ll_aux(char *gramma_file, char *output_file)
 {
-	t_buff			rule;
 	int			ret;
 
 	ret = 1;
 	if (!(ft_buffinit(&g_llterm, FT_BUFF_SIZE, sizeof(t_llterm))))
 		ret = CODE_ERR1; //Alloc error
-	if (ret > 0 && !(ft_buffinit(&rule, FT_BUFF_SIZE, sizeof(t_rule))))
+	if (!(ft_buffinit(&g_llderi, FT_BUFF_SIZE, sizeof(t_llterm))))
 		ret = CODE_ERR1; //Alloc error
 	if (ret > 0)
-		ret = ft_parse_gramma(gramma_file, &g_llterm, &rule);
+		ret = ft_parse_gramma(gramma_file, &g_llterm, &g_llderi, &g_llpiv);
 	if (ret >= 0)
-		ret = ft_lltab_init(rule);
+		ret = ft_lltab_init();
 	if (ret >= 0)
 		ft_export_value(output_file);
 	if (ret < 0)
 		ft_error(ret);
-	if (rule.buff != 0)
-		ft_memdel((void **)&rule.buff);
 	return (ret);
 }
 

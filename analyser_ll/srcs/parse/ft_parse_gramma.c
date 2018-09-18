@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 16:05:08 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/06/29 17:04:49 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/09/18 22:50:18 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,11 @@ static int			ft_parser_checkext(char *gramma_file, char *ext)
 	return (0);
 }
 
-extern int			ft_parse_gramma(char *gramma_file, t_buff *term, t_buff *rule)
+static int			ft_parse_gramma_aux(int fd, t_buff *term, t_buff *rule)
 {
-	int			fd;
-	char		*line;
-	int			ret;
+	char			*line;
+	int				ret;
 
-	if (!ft_parser_checkext(gramma_file, INPUT_EXT))
-		return (CODE_ERR3); //Bad input file ext
-	fd = open(gramma_file, O_RDONLY);
 	line = 0;
 	ret = 0;
 	while (ret >= 0 && (ret = ft_gnl(fd, &line)) >= 1)
@@ -46,6 +42,27 @@ extern int			ft_parse_gramma(char *gramma_file, t_buff *term, t_buff *rule)
 			ret = ft_parse_readline(line, term, rule);
 		ft_strdel(&line);
 	}
+	return (ret);
+}
+
+extern int			ft_parse_gramma(char *gramma_file, t_buff *llterm, t_buff *llderi, int *llpiv)
+{
+	int				fd;
+	int				ret;
+	t_buff			rule;
+
+	ret = 0;
+	if (!ft_parser_checkext(gramma_file, INPUT_EXT))
+		return (CODE_ERR3); //Bad input file ext
+	fd = open(gramma_file, O_RDONLY);
+	if (!(ft_buffinit(&rule, FT_BUFF_SIZE, sizeof(t_rule))))
+		return (CODE_ERR1); //Alloc error
+	if ((ret = ft_parse_gramma_aux(fd, llterm, &rule)) < 0)
+		return (ret);	
+	ft_parse_initderi(llderi, &rule);
+	*llpiv = rule.cr;
+	if (rule.buff != 0)
+		ft_memdel((void **)&rule.buff);
 	close(fd);
 	return (ret);
 }

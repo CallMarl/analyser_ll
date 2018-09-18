@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/22 15:45:28 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/09/17 13:23:55 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/09/18 22:17:57 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,52 +17,53 @@ extern t_buff		g_llderi;
 extern t_lltab		g_lltab;
 extern int			g_llpiv;
 
-/*
-** Fonction de recherche de l'ensemble des termes premier dans une grammaire:
-** L'algo prends en paramettre la regle dont il faut trouver la valeur premier
-** sont index (le numero de la regle) et sa position dans la grammaire.
-**
-** Si le premiere élément de la règle n'équivaux à elle même alors la grammaire
-** est éronné.
-** Sinon si le premiere éléments de la règle est un non-termninal on va alors
-** itéré sur l'ensemble des règles du buffer g_llderi. En itérant on cherche
-** a vérivier si le premiere élément de la règle équivaux à l'index d'une des
-** règle de la grammaire (on vérifira toutes les règles du même index y).
-** Si oui alors on itérera de la même facon (récursive) sur la sous règle trouvé
-** jusqu'à tomber sur une dérivé qui à pour première élément un terminal.
-**
-** On entre alors dans la troisième partie de cette algo qui intègre à g_lltab
-** l'élément premier de la règke de dérivation.
-**
-** Note: tout les élément en dessou de g_llpiv sont des non-terminaux, tout les
-** éléments au dessus sont des terminaux.
-*/
-
-extern int			ft_lltab_first(t_llderi rule, int y, int ind)
+static void		ft_lltab_insertfirst(int *line, int rule)
 {
 	int				i;
-	int				ret;
-	t_llderi		*llderi;
 
-	ret = 0;
-	llderi = (t_llderi *)g_llderi.buff;
-	if (rule.deri[0] == y)
-		return (-1); //Erreur de définition de la gammaire.
+	i = 0;
+	while (line[i] != -1 && line[i] != rule) // Erreur invalid read possible
+		i++;
+	line[i] = rule;
+}
+
+static int			ft_lltab_initfirst_aux(int **first, t_llderi rule, int y)
+{
+	int				i;
+	t_llderi		*tmp;
+
+	tmp = (t_llderi *)g_llderi.buff;
+	if (rule.deri[0] == 0)
+		return (-1); //Erreur de définition de la grammaire
 	else if (rule.deri[0] < g_llpiv)
 	{
 		i = 0;
-		while (i < g_llpiv && ret >= 0)
+		while (i < g_llpiv)
 		{
-			if (rule.deri[0] == llderi[i].y 
-					&& (rule.deri[0] != ind && rule.deri[0] != rule.y))
-				ret = ft_lltab_first(llderi[i], y, ind);
-			i++;
+			if (rule.deri[0] == tmp[i].y)
+				return (ft_lltab_initfirst_aux(first, tmp[i], y));
 		}
 	}
-	else if (rule.deri[0] >= g_llpiv)
+	else
 	{
-		g_lltab.lltab[y - 1][rule.deri[0] - g_llpiv] = ind;
+		ft_lltab_insertfirst(first[y], rule.deri[0]);
 		return (1);
+	}	
+	return (-1);
+}
+
+extern int			ft_lltab_initfirst(int **first)
+{
+	int				i;
+	t_llderi		*tmp;
+
+	i = 0;
+	tmp = (t_llderi *)g_llderi.buff;
+	while (i < g_llpiv)
+	{
+		if (ft_lltab_initfirst_aux(first, tmp[i], i) < 0)
+			return (-1);
+		i++;
 	}
-	return (ret);
+	return (1);
 }

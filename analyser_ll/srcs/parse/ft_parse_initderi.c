@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/28 14:48:13 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/07/10 14:01:28 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/09/18 22:50:59 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,9 @@
 #include "liball.h"
 #include "libft.h"
 
-extern t_buff		g_llderi;
 extern t_buff		g_llterm;
 
-static int			ft_llderi_setderi(char *deri, t_buff *rule)
+static int			ft_parse_setderi(char *deri, t_buff *rule)
 {
 	size_t			i;
 
@@ -41,7 +40,7 @@ static int			ft_llderi_setderi(char *deri, t_buff *rule)
 	return (CODE_ERR6); // Il existe un term dans les dérivation qui n'est ni un regle ni un terminal
 }
 
-static int			ft_llderi_initaux(t_rule *cur, t_buff *rule)
+static int			ft_parse_initderi_aux(t_rule *cur, t_buff *rule, t_buff *llderi)
 {
 	char			**deri;
 	t_llderi		tmp;
@@ -56,7 +55,7 @@ static int			ft_llderi_initaux(t_rule *cur, t_buff *rule)
 	i = 0;
 	while (deri[i] != 0)
 	{
-		if ((code = ft_llderi_setderi(deri[i], rule)) < 0)
+		if ((code = ft_parse_setderi(deri[i], rule)) < 0)
 			break ;
 		tmp.deri[i++] = code;
 	}
@@ -65,25 +64,20 @@ static int			ft_llderi_initaux(t_rule *cur, t_buff *rule)
 		return (code);
 	tmp.y = cur->i;
 	tmp.rule = ft_strdup(cur->rule);
-	if (!ft_buffinsert(&g_llderi, (void *)&tmp, rule->cr))
+	if (!ft_buffinsert(llderi, (void *)&tmp, rule->cr))
 		return (CODE_ERR1);
 	return (0);
 }
 
-extern int			ft_llderi_init(t_buff *rule)
+extern int			ft_parse_initderi(t_buff *llderi, t_buff *rule)
 {
 	size_t			i;
 	int				ret;
 
-	if (g_llderi.buff == 0)
-	{
-		if (!(ft_buffinit(&g_llderi, rule->cr, sizeof(t_llderi))))
-			return (CODE_ERR1);
-	}
 	i = 0;
 	while (i < rule->cr)
 	{
-		if ((ret = ft_llderi_initaux(&((t_rule *)rule->buff)[i], rule)) < 0)
+		if ((ret = ft_parse_initderi_aux(&((t_rule *)rule->buff)[i], rule, llderi)) < 0)
 			return (ret);
 		i++;
 	}

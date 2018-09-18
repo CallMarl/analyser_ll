@@ -6,7 +6,7 @@
 #    By: pprikazs <pprikazs@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/08 18:58:27 by pprikazs          #+#    #+#              #
-#*   Updated: 2018/09/17 20:13:42 by                  ###   ########.fr       *#
+#*   Updated: 2018/09/18 22:03:41 by                  ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,25 +33,24 @@ VPATH = .:./srcs:./srcs/export:./srcs/lltab:./srcs/parse
 SRCS = main.c
 #./srcs/
 SRCS += ft_analyser_ll.c \
-	   ft_debug.c \
-	   ft_error.c \
-	   ft_global.c
+		ft_debug.c \
+		ft_error.c \
+		ft_global.c
 #./srcs/export/
 SRCS += ft_export_value.c \
 		ft_export_llderi.c \
 		ft_export_lltab.c \
 		ft_export_llterm.c
 #./srcs/lltab/
-SRCS += ft_llderi_init.c \
-	   ft_lltab_eps.c \
-	   ft_lltab_first.c \
-	   ft_lltab_follow.c \
-	   ft_lltab_init.c
+SRCS += ft_lltab_first.c \
+		ft_lltab_follow.c \
+		ft_lltab_init.c
 #./srcs/parse
 SRCS += ft_parse_gramma.c \
-	   ft_parse_readline.c \
-	   ft_parse_readrules.c \
-	   ft_parse_readterm.c
+		ft_parse_initderi.c \
+		ft_parse_readline.c \
+		ft_parse_readrules.c \
+		ft_parse_readterm.c
 
 OBJ_PATH = ./obj/
 OBJ_NAME = $(SRCS:.c=.o)

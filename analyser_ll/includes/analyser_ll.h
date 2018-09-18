@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 19:02:53 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/07/12 17:14:52 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/09/18 22:49:36 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,12 @@ int						ft_export_value(char *output_file);
 int						ft_export_llderi(int fd);
 int						ft_export_lltab(int fd);
 int						ft_export_llterm(int fd);
-int						ft_llderi_init(t_buff *rule);
-int						ft_lltab_eps(t_llderi rule);
-int						ft_lltab_first(t_llderi rule, int y, int ind);
-int						ft_lltab_follow(t_llderi rule, int y, int ind);
-int						ft_lltab_init(t_buff rule);
-int						ft_parse_gramma(char *gramma_file, t_buff *term, t_buff *rule);
+void 					ft_lltab_initfollow(int **follow, int **first);
+int						ft_lltab_initfirst(int **first);
+int						ft_lltab_getnbrule(void);
+int						ft_lltab_init();
+int						ft_parse_gramma(char *gramma_file, t_buff *llterm, t_buff *llderi, int *llpiv);
+int						ft_parse_initderi(t_buff *llderi, t_buff *rule);
 int						ft_parse_readline(char *line, t_buff *term, t_buff *rule);
 int						ft_parse_readrule(char *line, t_buff *rule);
 int						ft_parse_readterm(char *line, t_buff *term);
@@ -53,6 +53,7 @@ int						ft_parse_readterm(char *line, t_buff *term);
 ** Fonction pour le débug des structures
 */
 
+void					ft_debug_analyser();
 void					ft_debug_rule(t_buff rule);
 
 /*

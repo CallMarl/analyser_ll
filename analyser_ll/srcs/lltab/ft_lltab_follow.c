@@ -6,7 +6,7 @@
 /*   By: pprikazs <pprikazs@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/25 17:50:42 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/09/17 14:06:52 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/09/18 22:35:25 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,64 +15,90 @@
 #include "libft.h"
 
 extern t_buff		g_llderi;
-extern t_lltab		g_lltab;
 extern int			g_llpiv;
 
-static void			ft_lltab_follow_first(int follow, int first)
-{
-	int				x;
+/*
+** Pour tout production de Suivant(S):
+** On a (alpha) et b (beta) deux élément d'une regle dérivé qui peuvent etre soit
+** un terminal soit un non terminal, A un élément non-terminal, c un élément 
+** terminal et ε représentation du du caractere null.
+**
+** De base, placé $ (fin de chaine) dans Suivant(S) puisque S est l'axiome de la
+** grammaire.
+**
+** Si la regle dérivé correspond à une regle de la forme S :: aAb Suivant(A)
+** équivaux à Premier(b).
+**
+** Si la regle dérivé correspond à une regle de la forme S :: aA Suivant(A) 
+** équivaux à Suivant(S).
+**
+** Si la regle dérivé correspond à une regle de la forme S :: aAb 
+** mais que b est annulable alors Suivant(A) équivaux à Suivant(S).
+**
+** Si la regle dérivé correspond à une regle de la forme S :: aAb et que
+** b et de la forme b :: c ou b :: ε alors Suivant(A) équivaux à
+** Premier(B) et à Suivant(S).
+**
+** On remarque ici que l'algorithm est basé que sur les éléments de droite des
+** dérivé c'est à dire les dérivation, on chercher à calculer l'ensemble suivant
+** des non Terminaux. Si l'élément non terminal est placé en début de dérivation
+** on considéra ** qu'un élément ε le précede si l'élément non-terminal est placé
+** en fin de dérivation on considérera qu'un élément ε le suit.
+**
+*/
 
-	x = 0;
-	while (x < g_lltab.max_x)
+static void			ft_lltab_insertfollow(int *line, int *value)
+{
+	int				i;
+	int				j;
+	int				y;
+
+	i = 0;
+	y = ft_lltab_getnbrule();
+	while (i < y && value[i] != -1)
 	{
-		if (g_lltab.lltab[first][x] != -1)
-			g_lltab.lltab[follow][x] = g_lltab.lltab[first][x];
-		x++;
+		while (j < y && line[j] != value[i] && line[j] != -1)
+				j++;
+		line[j] = value[i];
+		i++;
 	}
 }
 
-/*
-** Calcule de l'ensemble suivant pour une regle de dérivation donné:
-**
-** Pour toutes les règles de dérivation, j'itère sur l'ensemble des terminaux
-** et non-terminaux de ces règles, si lorsque j'itère je tombe sur la règle de
-** dérivation chercher alors si l'ément juste apres est un non terminal je
-** l'ajoute au tableau d'analyse. Sinon si l'élément suivant est un
-** non terminal j'ajoute l'esemble des premier du non terminal trouvé à la table
-** d'analyse.
-**
-** Sinon si aucune règle de dérivation ne suis la règle trouvé alors j'ajoute
-** $ à la table d'analyse
-*/
-
-extern int			ft_lltab_follow(t_llderi rule, int y, int ind)
+static void			ft_lltab_initfollow_aux(int **follow, int **first, int y, int ind)
 {
 	int				i;
 	size_t			j;
-	int				tmp;
-	t_llderi		*llderi;
+	t_llderi		*tmp;
 
 	i = 0;
-	llderi = (t_llderi *)g_llderi.buff;
+	tmp = (t_llderi *)g_llderi.buff;
 	while (i < g_llpiv)
 	{
 		j = 0;
-		while (j < llderi[i].d_size)
+		while (j < tmp[i].d_size)
 		{
-			if (llderi[i].deri[j] == rule.y && j < llderi[i].d_size - 1)
+			if (tmp[i].deri[j] == y)
 			{
-				tmp = llderi[i].deri[j + 1];
-				if (tmp >= g_llpiv)
-					g_lltab.lltab[y - 1][tmp - g_llpiv] = ind;
-				else if (tmp < g_llpiv && tmp != rule.y)
-					ft_lltab_follow_first(rule.y ,tmp);
-				tmp = llderi[i].deri[j + 1];
+				if (j + 1 == tmp[i].d_size && tmp[i].deri[j + 1] < g_llpiv)
+					ft_lltab_initfollow_aux(follow, first, tmp[i].y, ind);
+				else
+					ft_lltab_insertfollow(follow[ind], first[j]);
 			}
-			else if (llderi[i].deri[j] == rule.y)
-				{;} // Ajouter $ à suivant
 			j++;
 		}
 		i++;
 	}
-	return (1);
+	ft_lltab_insertfollow(follow[ind], follow[y]);
+} 
+
+extern void			ft_lltab_initfollow(int **follow, int **first)
+{
+	int				i;
+
+	i = 0;
+	while (i < g_llpiv)
+	{
+		ft_lltab_initfollow_aux(follow, first, i, i);
+		i++;
+	}
 }
