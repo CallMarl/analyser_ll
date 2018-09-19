@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 19:02:53 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/09/18 22:49:36 by                  ###   ########.fr       */
+/*   Updated: 2018/09/19 18:45:14 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int						ft_export_value(char *output_file);
 int						ft_export_llderi(int fd);
 int						ft_export_lltab(int fd);
 int						ft_export_llterm(int fd);
-void 					ft_lltab_initfollow(int **follow, int **first);
+void 					ft_lltab_initfollow(int **follow, int **first, int y);
 int						ft_lltab_initfirst(int **first);
 int						ft_lltab_getnbrule(void);
 int						ft_lltab_init();
@@ -55,6 +55,7 @@ int						ft_parse_readterm(char *line, t_buff *term);
 
 void					ft_debug_analyser();
 void					ft_debug_rule(t_buff rule);
+void					ft_debug_intarr(int **arr, int x, int y);
 
 /*
 ** Gesion des erreur

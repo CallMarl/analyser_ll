@@ -6,7 +6,7 @@
 /*   By: pprikazs <pprikazs@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/20 14:32:50 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/09/18 22:43:18 by                  ###   ########.fr       */
+/*   Updated: 2018/09/19 18:44:40 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,14 @@ extern int			ft_lltab_getnbrule(void)
 		nb = (nb < tmp.y) ? tmp.y : nb;
 		i++;
 	}
-	return (nb + 1);
+	return (nb);
 }
 
 static void		ft_lltab_insert(int *line, int *value, int y)
 {
 	int			i;
 
+	i = 0;
 	while (i < g_lltab.max_x && value[i] != -1)
 	{
 		line[value[i] - g_llpiv] = y;
@@ -86,9 +87,10 @@ static void		ft_lltab_initaux(int **first, int **follow)
 	tmp = (t_llderi *)g_llderi.buff;
 	while (i < g_llpiv)
 	{
-		ft_lltab_insert(g_lltab.lltab[tmp[i].y], first[i], tmp[i].y);
-		if(first[i][0] == - 1)
-			ft_lltab_insert(g_lltab.lltab[tmp[i].y], follow[tmp[i].y], tmp[i].y);
+		ft_lltab_insert(g_lltab.lltab[tmp[i].y - 1], first[i], i);
+		if(first[i][0] == g_llpiv + g_lltab.max_x - 1)
+			ft_lltab_insert(g_lltab.lltab[tmp[i].y], follow[tmp[i].y - 1], tmp[i].y);
+		i++;
 	}
 }
 
@@ -102,14 +104,24 @@ extern int			ft_lltab_init()
 	y = ft_lltab_getnbrule();
 	first = 0;
 	follow = 0;
-	if ((first = ft_alloc_intarr(g_llterm.cr + 1, g_llpiv)))
+	ret = 1;
+	if (!(first = ft_alloc_intarr(g_llterm.cr + 1, y)))
 		ret = CODE_ERR1; //Alloc error
 	if (ret > 0 && !(follow = ft_alloc_intarr(g_llterm.cr + 1, y)))
 		ret = CODE_ERR1; //Alloc error
 	if (ret > 0)
 	{
 		ft_lltab_initfirst(first);
-		ft_lltab_initfollow(follow, first);
+				ft_putendl("First arr:");
+				ft_debug_intarr(first, g_llterm.cr + 1, y);
+		ft_lltab_initfollow(follow, first, y);
+			{
+				ft_putchar('\n');
+				ft_putendl("First arr:");
+				ft_debug_intarr(first, g_llterm.cr + 1, y);
+				ft_putendl("Follow arr:");
+				ft_debug_intarr(follow, g_llterm.cr + 1, y);
+			}
 		ret = ft_utils_alloclltab(&g_lltab, y, g_llterm.cr + 1);
 		if (ret > 0)
 			ft_lltab_initaux(first, follow);

@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/29 16:50:04 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/07/13 11:26:50 by                  ###   ########.fr       */
+/*   Updated: 2018/09/19 16:58:21 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ extern void			ft_debug_lltab(t_lltab lltab)
 	{
 		ft_printf("x : %d\n", lltab.max_x);
 		ft_printf("y : %d\n", lltab.max_y);
-		while (y < lltab.max_y - 1)
+		while (y < lltab.max_y)
 		{
 			x = 0;
 			while (x < lltab.max_x)
