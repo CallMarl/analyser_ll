@@ -6,7 +6,7 @@
 /*   By: pprikazs <pprikazs@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/25 17:50:42 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/09/20 16:24:48 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/09/20 16:46:16 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,93 +49,6 @@ extern int			g_lllast;
 **
 */
 
-/*
-static void			ft_lltab_insertfollow(int *line, int *value)
-{
-	size_t			i;
-	size_t			j;
-	int				y;
-
-	i = 0;
-	y = ft_lltab_getnbrule();
-	while (i < g_llterm.cr + 1 && value[i] != -1)
-	{
-		j = 0;
-		while (j < g_llterm.cr && line[j] != value[i] && line[j] != -1)
-		{
-				j++;
-		}
-		line[j] = value[i];
-		i++;
-	}
-}
-
-static void			ft_lltab_initfollow_aux(int **follow, int **first, int y, int ind)
-{
-	int				i;
-	size_t			j;
-	t_llderi		*tmp;
-
-	ft_putstr("\ny : ");
-	ft_putnbr(y);
-	ft_putstr("\nind : ");
-	ft_putnbr(ind);
-	ft_putchar('\n');
-
-	i = 0;
-	tmp = (t_llderi *)g_llderi.buff;
-	while (i < g_llpiv)
-	{
-		ft_putstr("\ni : ");
-		ft_putnbr(i);
-		ft_putstr("\nd_size : ");
-		ft_putnbr(tmp[i].d_size);
-		ft_putchar('\n');
-		j = 0;
-		while (j < tmp[i].d_size)
-		{
-			if (tmp[i].deri[j] == y + 1)
-			{
-				ft_putendl("dedans");
-				if (j + 1 == tmp[i].d_size && tmp[i].deri[j] < g_llpiv)
-				{
-					ft_putendl("la1");
-					ft_lltab_initfollow_aux(follow, first, tmp[i].y - 1, ind);
-				}
-				else if (tmp[i].deri[j + 1] < g_llpiv)
-				{
-					ft_putendl("la2");
-					ft_lltab_insertfollow(follow[tmp[ind].y - 1], first[tmp[i].deri[j + 1] - 1]);
-					ft_putendl("Follow arr:");
-					ft_debug_intarr(follow, g_llterm.cr + 1, 2);
-				}
-				else if (tmp[i].deri[j + 1] >= g_llpiv)
-				{
-					ft_putendl("la3");
-					ft_lltab_insertfollow(follow[tmp[i].y - 1], &tmp[i].deri[j + 1]);
-					ft_putendl("Follow arr:");
-					ft_debug_intarr(follow, g_llterm.cr + 1, 2);
-				}
-			}
-			j++;
-		}
-		i++;
-	}
-	ft_lltab_insertfollow(follow[tmp[ind].y - 1], follow[y]);
-} 
-
-extern void			ft_lltab_initfollow(int **follow, int **first, int y)
-{
-	int				i;
-
-	i = 0;
-	while (i < y)
-	{
-		ft_lltab_initfollow_aux(follow, first, i, i);
-		i++;
-	}
-}
-// */
 static void			ft_lltab_insertfollow(int *line, int *value, size_t size)
 {
 	size_t			i;
@@ -178,53 +91,32 @@ static void			ft_lltab_initfollow_aux(t_intarr *follow, t_intarr *first, int y, 
 	size_t			j;
 	t_llderi		*tmp;
 
-	ft_printf("\nind : %d\n", ind);
+	ft_printf("ind : %d\n", ind);
 	tmp = (t_llderi *)g_llderi.buff;
 	if (ind == 0)
-	{
-		ft_putendl("_axiom");
 		ft_lltab_insertfollow(follow->arr[y - 1], &g_lllast, 1); //On ajoute $ car l'axiom
-		ft_putendl("_end axiom");
-	}
 	i = 0;
 	while (i < g_llpiv)
 	{
-		ft_printf("_flag_%d\n", i);
 		j = 0;
 		while (j < tmp[i].d_size)
 		{
-			ft_printf("__flag__%d\n", j);
 			if (tmp[i].deri[j] == y)
 			{
-				ft_putendl("___dedans");
 				if (ind != tmp[i].y - 1 && j + 1 == tmp[i].d_size && tmp[i].deri[j] < g_llpiv) //ind != tmp[i].y (boucle infinie)
 				{
-					ft_putendl("____dedans_1");
-					ft_putendl("\n_____new");
 					ft_lltab_initfollow_aux(follow, first, tmp[i].y, tmp[i].y - 1);
-					ft_putendl("_____end_new\n");
 					ft_lltab_insertfollow(follow->arr[y - 1], follow->arr[tmp[i].y - 1], follow->max_x);
 				}
 				else if (ind != tmp[i].y - 1)
 				{
-					ft_putendl("____dedans_2");
 					if (tmp[i].deri[j + 1] < g_llpiv)
-					{
-						ft_putendl("_____dedans__1");
-						ft_putnbr(tmp[tmp[i].deri[j + 1]].y - 1);
 						ft_lltab_insertfollow(follow->arr[y - 1], first->arr[tmp[tmp[i].deri[j + 1]].y - 1], first->max_x);
-					}
 					else
-					{
-						ft_putendl("_____dedans__2");
 						ft_lltab_insertfollow(follow->arr[y - 1], &tmp[i].deri[j + 1], 1);
-					}
 				}
 				else if (ft_lltab_isnullvalue(first, y - 1))
-				{
 					ft_lltab_insertfollow(follow->arr[y - 1], &g_lllast, 1); //On ajoute ca annulable
-				}
-				ft_putendl("___dehors");
 			}
 			j++;
 		}
