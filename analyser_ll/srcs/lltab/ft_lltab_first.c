@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/22 15:45:28 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/09/19 18:40:37 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/09/20 16:08:54 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,19 @@ extern t_buff		g_llderi;
 extern t_lltab		g_lltab;
 extern int			g_llpiv;
 
-static void		ft_lltab_insertfirst(int *line, int rule)
+static void		ft_lltab_insertfirst(t_intarr *first, int y, int rule)
 {
 	int				i;
+	int				*line;
 
 	i = 0;
-	while (line[i] != -1 && line[i] != rule) // Erreur invalid read possible
+	line = first->arr[y];
+	while (i < first->max_x && line[i] != -1 &&  line[i] != rule)
 		i++;
 	line[i] = rule;
 }
 
-static int			ft_lltab_initfirst_aux(int **first, t_llderi rule, int y)
+static int			ft_lltab_initfirst_aux(t_intarr *first, t_llderi rule, int y)
 {
 	int				i;
 	int				ret;
@@ -49,13 +51,13 @@ static int			ft_lltab_initfirst_aux(int **first, t_llderi rule, int y)
 	}
 	else
 	{
-		ft_lltab_insertfirst(first[y], rule.deri[0]);
+		ft_lltab_insertfirst(first, y, rule.deri[0]);
 		ret = 1;;
 	}
 	return (ret);
 }
 
-extern int			ft_lltab_initfirst(int **first)
+extern int			ft_lltab_initfirst(t_intarr *first)
 {
 	int				i;
 	t_llderi		*tmp;
@@ -64,7 +66,7 @@ extern int			ft_lltab_initfirst(int **first)
 	tmp = (t_llderi *)g_llderi.buff;
 	while (i < g_llpiv)
 	{
-		if (ft_lltab_initfirst_aux(first, tmp[i], tmp[i].y - 1) < 0)
+		if (ft_lltab_initfirst_aux(first, tmp[i], i) < 0)
 			return (-1);
 		i++;
 	}

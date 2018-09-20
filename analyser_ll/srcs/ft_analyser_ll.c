@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 19:00:12 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/09/18 22:40:02 by                  ###   ########.fr       */
+/*   Updated: 2018/09/20 12:54:43 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 extern t_buff		g_llterm;
 extern t_buff		g_llderi;
 extern int			g_llpiv;
+extern int			g_lllast;
 
 static int			ft_analyser_ll_aux(char *gramma_file, char *output_file)
 {
@@ -31,7 +32,10 @@ static int			ft_analyser_ll_aux(char *gramma_file, char *output_file)
 	if (ret > 0)
 		ret = ft_parse_gramma(gramma_file, &g_llterm, &g_llderi, &g_llpiv);
 	if (ret >= 0)
+	{
+		g_lllast = g_llpiv + g_llterm.cr;
 		ret = ft_lltab_init();
+	}
 	if (ret >= 0)
 		ft_export_value(output_file);
 	if (ret < 0)

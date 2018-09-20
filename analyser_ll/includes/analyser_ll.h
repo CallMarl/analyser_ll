@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 19:02:53 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/09/19 18:45:14 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/09/20 16:23:05 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define DELIM_DERIV "::"
 
 typedef struct s_rule	t_rule;
+typedef struct s_intarr	t_intarr;
 
 struct					s_rule
 {
@@ -34,13 +35,21 @@ struct					s_rule
 	char				*deri;
 };
 
+struct					s_intarr
+{
+	int					max_x;
+	int					max_y;
+	int					**arr;
+};
+
+t_intarr				*ft_alloc_intarr(int x, int y);
 int						ft_analyser_ll(int argc, char **argv);
 int						ft_export_value(char *output_file);
 int						ft_export_llderi(int fd);
 int						ft_export_lltab(int fd);
 int						ft_export_llterm(int fd);
-void 					ft_lltab_initfollow(int **follow, int **first, int y);
-int						ft_lltab_initfirst(int **first);
+void 					ft_lltab_initfollow(t_intarr *follow, t_intarr *first);
+int						ft_lltab_initfirst(t_intarr *first);
 int						ft_lltab_getnbrule(void);
 int						ft_lltab_init();
 int						ft_parse_gramma(char *gramma_file, t_buff *llterm, t_buff *llderi, int *llpiv);
@@ -55,7 +64,7 @@ int						ft_parse_readterm(char *line, t_buff *term);
 
 void					ft_debug_analyser();
 void					ft_debug_rule(t_buff rule);
-void					ft_debug_intarr(int **arr, int x, int y);
+void					ft_debug_intarr(t_intarr *arr);
 
 /*
 ** Gesion des erreur

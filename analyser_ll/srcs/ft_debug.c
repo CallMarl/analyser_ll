@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 19:02:03 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/09/19 18:44:51 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/09/20 13:41:59 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,19 +46,19 @@ extern void			ft_debug_analyser()
 	ft_debug_lltab(g_lltab);
 }
 
-extern void			ft_debug_intarr(int **arr, int x, int y)
+extern void			ft_debug_intarr(t_intarr *arr)
 {
 	int				i;
 	int				j;
 
 	i = 0;
-	while (i < y)
+	while (i < arr->max_y)
 	{
 		j = 0;
-		while (j < x)
+		while (j < arr->max_x)
 		{
-			ft_printf("%3d", arr[i][j]);
-			if (j + 1 != x)
+			ft_printf("%3d", arr->arr[i][j]);
+			if (j + 1 != arr->max_x)
 				ft_putstr(", ");
 			j++;
 		}

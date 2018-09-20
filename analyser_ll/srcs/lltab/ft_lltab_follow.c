@@ -6,7 +6,7 @@
 /*   By: pprikazs <pprikazs@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/25 17:50:42 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/09/19 19:13:57 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/09/20 16:24:48 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 extern t_buff		g_llderi;
 extern t_buff		g_llterm;
 extern int			g_llpiv;
+extern int			g_lllast;
 
 /*
 ** Pour tout production de Suivant(S):
@@ -47,6 +48,7 @@ extern int			g_llpiv;
 ** en fin de dérivation on considérera qu'un élément ε le suit.
 **
 */
+
 /*
 static void			ft_lltab_insertfollow(int *line, int *value)
 {
@@ -133,7 +135,7 @@ extern void			ft_lltab_initfollow(int **follow, int **first, int y)
 		i++;
 	}
 }
-*/
+// */
 static void			ft_lltab_insertfollow(int *line, int *value, size_t size)
 {
 	size_t			i;
@@ -145,37 +147,125 @@ static void			ft_lltab_insertfollow(int *line, int *value, size_t size)
 	while (i < size && value[i] != -1)
 	{
 		j = 0;
+		//ft_printf(" %d ", value[i]);
 		while (j < g_llterm.cr + 1 && line[j] != value[i] && line[j] != -1)
-		{
 				j++;
-		}
 		line[j] = value[i];
 		i++;
 	}
+	//ft_putchar('\n');
 }
 
-static void			ft_lltab_initfollow_aux(int **follow, int **first, int y, int ind)
+static int			ft_lltab_isnullvalue(t_intarr *first, int y)
+{
+	int				i;
+	int				*line;
+
+	i = 0;
+	line = first->arr[y];
+	while (i < first->max_x && line[i] != -1)
+	{
+		if (line[i] == g_lllast)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+static void			ft_lltab_initfollow_aux(t_intarr *follow, t_intarr *first, int y, int ind)
 {
 	int				i;
 	size_t			j;
 	t_llderi		*tmp;
 
+	ft_printf("\nind : %d\n", ind);
+	tmp = (t_llderi *)g_llderi.buff;
 	if (ind == 0)
-		ft_lltab_insertfollow(follow[tmp[ind].y - 1], &(g_llpiv + g_llterm.cr), 1); //On ajoute $ car l'axiom
-
-	ft_putendl("Follow arr:");
-	ft_debug_intarr(follow, g_llterm.cr + 1, 2);
-}
-
-extern void			ft_lltab_initfollow(int **follow, int **first, int y)
-{
-	int				i;
-
+	{
+		ft_putendl("_axiom");
+		ft_lltab_insertfollow(follow->arr[y - 1], &g_lllast, 1); //On ajoute $ car l'axiom
+		ft_putendl("_end axiom");
+	}
 	i = 0;
 	while (i < g_llpiv)
 	{
-		ft_lltab_initfollow_aux(follow, first, tmp[i].y, i);
+		ft_printf("_flag_%d\n", i);
+		j = 0;
+		while (j < tmp[i].d_size)
+		{
+			ft_printf("__flag__%d\n", j);
+			if (tmp[i].deri[j] == y)
+			{
+				ft_putendl("___dedans");
+				if (ind != tmp[i].y - 1 && j + 1 == tmp[i].d_size && tmp[i].deri[j] < g_llpiv) //ind != tmp[i].y (boucle infinie)
+				{
+					ft_putendl("____dedans_1");
+					ft_putendl("\n_____new");
+					ft_lltab_initfollow_aux(follow, first, tmp[i].y, tmp[i].y - 1);
+					ft_putendl("_____end_new\n");
+					ft_lltab_insertfollow(follow->arr[y - 1], follow->arr[tmp[i].y - 1], follow->max_x);
+				}
+				else if (ind != tmp[i].y - 1)
+				{
+					ft_putendl("____dedans_2");
+					if (tmp[i].deri[j + 1] < g_llpiv)
+					{
+						ft_putendl("_____dedans__1");
+						ft_putnbr(tmp[tmp[i].deri[j + 1]].y - 1);
+						ft_lltab_insertfollow(follow->arr[y - 1], first->arr[tmp[tmp[i].deri[j + 1]].y - 1], first->max_x);
+					}
+					else
+					{
+						ft_putendl("_____dedans__2");
+						ft_lltab_insertfollow(follow->arr[y - 1], &tmp[i].deri[j + 1], 1);
+					}
+				}
+				else if (ft_lltab_isnullvalue(first, y - 1))
+				{
+					ft_lltab_insertfollow(follow->arr[y - 1], &g_lllast, 1); //On ajoute ca annulable
+				}
+				ft_putendl("___dehors");
+			}
+			j++;
+		}
 		i++;
 	}
+//	ft_putendl("\nFollow arr:");
+//	ft_debug_intarr(follow);
 }
 
+extern t_intarr		*ft_lltab_firstforfollow(t_intarr *first, int x, int y)
+{
+	int				i;
+	t_intarr		*arr;
+	t_llderi		*tmp;
+
+	i = 0;
+	arr = ft_alloc_intarr(x, y);
+	tmp = (t_llderi *)g_llderi.buff;
+	while (i < g_llpiv)
+	{
+		ft_lltab_insertfollow(arr->arr[tmp[i].y - 1], first->arr[i], arr->max_x);		
+		i++;
+	}
+	return (arr);
+}
+
+extern void			ft_lltab_initfollow(t_intarr *follow, t_intarr *first)
+{
+	int				i;
+	t_llderi		*tmp;
+	t_intarr		*ffirst;
+
+	i = 0;
+	tmp = (t_llderi *)g_llderi.buff;
+	ffirst = ft_lltab_firstforfollow(first, first->max_x, follow->max_y);
+	while (i < ffirst->max_y)
+	{
+		ft_printf("\nflag%d", i);
+		ft_lltab_initfollow_aux(follow, ffirst, i + 1, i);
+		i++;
+	}
+	//unset ffirst
+}
+// */
