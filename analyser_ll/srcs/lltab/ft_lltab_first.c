@@ -6,58 +6,19 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/22 15:45:28 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/09/20 18:32:17 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/09/21 03:31:29 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stddef.h>
 #include "analyser_ll.h"
 #include "libft.h"
 
 extern t_buff		g_llderi;
-extern t_lltab		g_lltab;
+extern t_intarr		g_llfirst;
+extern t_intarr		g_llffirst;
 extern int			g_llpiv;
-
-static void		ft_lltab_insertfirst(t_intarr *first, int y, int rule)
-{
-	int				i;
-	int				*line;
-
-	i = 0;
-	line = first->arr[y];
-	while (i < first->max_x && line[i] != -1 &&  line[i] != rule)
-		i++;
-	line[i] = rule;
-}
-
-/*
-static int			ft_lltab_initfirst_aux(t_intarr *first, t_llderi rule, int y)
-{
-	int				i;
-	int				ret;
-	t_llderi		*tmp;
-
-	tmp = (t_llderi *)g_llderi.buff;
-	ret = 1;
-	if (rule.deri[0] == rule.y)
-		return (1); //Erreur de définition de la grammaire
-	else if (rule.deri[0] < g_llpiv)
-	{
-		i = 0;
-		while (i < g_llpiv && ret > 0)
-		{
-			if (rule.deri[0] == tmp[i].y)
-				ret = ft_lltab_initfirst_aux(first, tmp[i], y);
-			i++;
-		}
-	}
-	else
-	{
-		ft_lltab_insertfirst(first, y, rule.deri[0]);
-		ret = 1;;
-	}
-	return (ret);
-}
-*/
+extern int			g_lllast;
 
 /*
 ** Pour toute production premier de S:
@@ -77,12 +38,99 @@ static int			ft_lltab_initfirst_aux(t_intarr *first, t_llderi rule, int y)
 ** à ε alors Premier(S) équivaux premier(A)
 */
 
-static int			ft_lltab_initfirst(t_intarr *first)
+extern void		ft_utils_insert(int *line, int *value, size_t size)
 {
+	size_t			i;
+	int				j;
 
+	i = 0;
+	while (i < size && value[i] != -1)
+	{
+		j = 0;
+		if (value[i] != g_lllast)
+		{
+			while (j < g_lllast - g_llpiv && line[j] != value[i] && line[j] != -1)
+				j++;
+			line[j] = value[i];
+		}
+		i++;
+	}
 }
 
-extern int			ft_lltab_initfirst(t_intarr *first)
+extern void		ft_utils_insertnull(int *line)
+{
+	int			i;
+	
+	i = 0;
+	while (i < g_lllast - g_llpiv && line[i] != g_lllast && line[i] != -1)
+		i++;
+	line[i] = g_lllast;
+}
+
+extern int		ft_utils_isnullvalue(int *line)
+{
+	int			i;
+
+	i = 0;
+	while (i < g_lllast - g_llpiv && line[i] != -1)
+	{
+		if (line[i] == g_lllast)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+static int			ft_lltab_insertterm(int val, int y, int ind)
+{
+		if (val == g_lllast)
+		{
+			ft_utils_insertnull(g_llfirst.arr[ind]);
+			ft_utils_insertnull(g_llffirst.arr[y - 1]);
+			return (1);
+		}
+		if (val >= g_llpiv)
+		{
+			ft_utils_insert(g_llfirst.arr[ind], &val, 1);
+			ft_utils_insert(g_llffirst.arr[y - 1], &val, 1);
+			return (1);
+		}
+		return (0);
+}
+
+
+static int			ft_lltab_initfirst(t_llderi rule, int y, int ind)
+{
+	size_t			i;
+	int				j;
+	int				ret;
+	t_llderi		*tmp;
+	
+	tmp = (t_llderi *)g_llderi.buff;
+	if (rule.d_size > 1 && ft_utils_isnullvalue(rule.deri))
+		return (-1); // Erreur sur la grammaire
+	i = 0;
+	ret = 1;
+	while (i < rule.d_size)
+	{
+		if(ft_lltab_insertterm(rule.deri[i], y, ind))
+			break;
+		j = 0;
+		while (j < g_llpiv)
+		{
+			if (tmp[j].y == rule.deri[i])
+				ret = ft_lltab_initfirst(tmp[j], tmp[j].y, j);
+			ft_utils_insert(g_llfirst.arr[ind], g_llffirst.arr[rule.deri[i] - 1], g_llfirst.max_x);
+			if (!ft_utils_isnullvalue(g_llffirst.arr[y - 1]))
+				break ;
+			j++;
+		}
+		i++;
+	}
+	return (ret);
+}
+
+extern int			ft_lltab_first(void)
 {
 	int				i;
 	t_llderi		*tmp;
@@ -90,11 +138,12 @@ extern int			ft_lltab_initfirst(t_intarr *first)
 	i = 0;
 	tmp = (t_llderi *)g_llderi.buff;
 	while (i < g_llpiv)
-
 	{
-		if (ft_lltab_initfirst_aux(first, tmp[i], i) < 0)
+		ft_printf("flag_%d\n", i);
+		if (ft_lltab_initfirst(tmp[i], tmp[i].y, i) < 0)
 			return (-1);
 		i++;
 	}
 	return (1);
 }
+// */

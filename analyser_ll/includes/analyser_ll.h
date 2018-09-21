@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 19:02:53 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/09/20 16:23:05 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/09/21 02:59:29 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,20 @@ int						ft_export_value(char *output_file);
 int						ft_export_llderi(int fd);
 int						ft_export_lltab(int fd);
 int						ft_export_llterm(int fd);
-void 					ft_lltab_initfollow(t_intarr *follow, t_intarr *first);
-int						ft_lltab_initfirst(t_intarr *first);
-int						ft_lltab_getnbrule(void);
-int						ft_lltab_init();
+void 					ft_lltab_follow(void);
+int						ft_lltab_first(void);
+int						ft_lltab_init(void);
 int						ft_parse_gramma(char *gramma_file, t_buff *llterm, t_buff *llderi, int *llpiv);
 int						ft_parse_initderi(t_buff *llderi, t_buff *rule);
 int						ft_parse_readline(char *line, t_buff *term, t_buff *rule);
 int						ft_parse_readrule(char *line, t_buff *rule);
 int						ft_parse_readterm(char *line, t_buff *term);
+void					ft_utils_insert(int *line, int *value, size_t size);
+void					ft_utils_insertnull(int *line);
+int						ft_utils_isnullvalue(int *line);
+void					ft_utils_uninitarr(t_intarr *arr);
+int						ft_utils_initarr(t_intarr *arr, int x, int y);
+int						ft_utils_getnbrule(void);
 
 /*
 ** Fonction pour le débug des structures

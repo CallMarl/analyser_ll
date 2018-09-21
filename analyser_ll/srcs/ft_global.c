@@ -6,10 +6,11 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 19:02:09 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/09/20 12:50:37 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/09/21 03:00:19 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "analyser_ll.h"
 #include "libft.h"
 #include "liball.h"
 
@@ -17,14 +18,6 @@
 ** Ensemble des varibles globales, ceci correspond également au données qui
 ** seront exporté dans le fichier binaire.
 */
-
-/*
-** Table d'analyse LL.
-*/
-
-t_lltab		g_lltab = {
-	0, 0, 0
-};
 
 /*
 ** Buffeur pour la list des dérivations il contient en paramettre un 
@@ -37,6 +30,30 @@ t_buff		g_llderi = {
 
 t_buff		g_llterm = {
 	0, 0, 0, 0
+};
+
+/*
+** Table d'analyse LL.
+*/
+
+t_lltab		g_lltab = {
+	0, 0, 0
+};
+
+/*
+** Tableau nécéssaire à l'initialisation de la table d'analyse
+*/
+
+t_intarr	g_llfirst = {
+	0, 0, 0
+};
+
+t_intarr	g_llffirst = {
+	0, 0, 0
+};
+
+t_intarr	g_llfollow = {
+	0, 0, 0
 };
 
 /*
