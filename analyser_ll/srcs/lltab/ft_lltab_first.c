@@ -3,10 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lltab_first.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
+/*   By:  <>                                        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/09/28 20:47:55 by                   #+#    #+#             */
+/*   Updated: 2018/09/28 21:03:03 by                  ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_lltab_first.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/22 15:45:28 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/09/21 03:31:29 by                  ###   ########.fr       */
+/*   Updated: 2018/09/28 20:47:27 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +54,16 @@ extern void		ft_utils_insert(int *line, int *value, size_t size)
 {
 	size_t			i;
 	int				j;
+	int				x;
 
 	i = 0;
+	x = g_lllast - g_llpiv + 1;
 	while (i < size && value[i] != -1)
 	{
 		j = 0;
 		if (value[i] != g_lllast)
 		{
-			while (j < g_lllast - g_llpiv && line[j] != value[i] && line[j] != -1)
+			while (j < x && line[j] != value[i] && line[j] != -1)
 				j++;
 			line[j] = value[i];
 		}
@@ -60,9 +74,11 @@ extern void		ft_utils_insert(int *line, int *value, size_t size)
 extern void		ft_utils_insertnull(int *line)
 {
 	int			i;
+	int			x;
 	
 	i = 0;
-	while (i < g_lllast - g_llpiv && line[i] != g_lllast && line[i] != -1)
+	x = g_lllast - g_llpiv + 1;
+	while (i < x && line[i] != g_lllast && line[i] != -1)
 		i++;
 	line[i] = g_lllast;
 }
@@ -70,9 +86,11 @@ extern void		ft_utils_insertnull(int *line)
 extern int		ft_utils_isnullvalue(int *line)
 {
 	int			i;
+	int			x;
 
 	i = 0;
-	while (i < g_lllast - g_llpiv && line[i] != -1)
+	x = g_lllast - g_llpiv + 1;
+	while (i < x && line[i] != -1)
 	{
 		if (line[i] == g_lllast)
 			return (1);
@@ -105,7 +123,8 @@ static int			ft_lltab_initfirst(t_llderi rule, int y, int ind)
 	int				j;
 	int				ret;
 	t_llderi		*tmp;
-	
+
+	ft_putendl("init first");
 	tmp = (t_llderi *)g_llderi.buff;
 	if (rule.d_size > 1 && ft_utils_isnullvalue(rule.deri))
 		return (-1); // Erreur sur la grammaire
@@ -113,16 +132,21 @@ static int			ft_lltab_initfirst(t_llderi rule, int y, int ind)
 	ret = 1;
 	while (i < rule.d_size)
 	{
+		ft_printf("index : %d\n", i);
 		if(ft_lltab_insertterm(rule.deri[i], y, ind))
 			break;
 		j = 0;
 		while (j < g_llpiv)
 		{
-			if (tmp[j].y == rule.deri[i])
+			ft_printf("index_j : %d\n", j);
+			if (tmp[j].y == rule.deri[i] && rule.deri[i] != y)
+			{
 				ret = ft_lltab_initfirst(tmp[j], tmp[j].y, j);
-			ft_utils_insert(g_llfirst.arr[ind], g_llffirst.arr[rule.deri[i] - 1], g_llfirst.max_x);
-			if (!ft_utils_isnullvalue(g_llffirst.arr[y - 1]))
-				break ;
+				ft_utils_insert(g_llfirst.arr[ind], g_llffirst.arr[rule.deri[i] - 1], g_llfirst.max_x);
+				ft_utils_insert(g_llffirst.arr[y - 1], g_llffirst.arr[rule.deri[i] - 1], g_llfirst.max_x);
+				if (!ft_utils_isnullvalue(g_llffirst.arr[y - 1]))
+					break ;
+			}
 			j++;
 		}
 		i++;
