@@ -27,7 +27,7 @@ endif
 DEPS = includes/*.h Makefile
 INCLUDES = -I./includes/
 
-VPATH = .:./srcs:./srcs/export:./srcs/lltab:./srcs/parse
+VPATH = .:./srcs:./srcs/export:./srcs/lltab:./srcs/lltab/utils:./srcs/parse
 
 #./
 SRCS = main.c
@@ -45,6 +45,13 @@ SRCS += ft_export_value.c \
 SRCS += ft_lltab_first.c \
 		ft_lltab_follow.c \
 		ft_lltab_init.c
+#./srcs/lltab/utils/
+SRCS += ft_utils_getnbrules.c \
+		ft_utils_initarr.c \
+		ft_utils_insert.c \
+		ft_utils_insertnull.c \
+		ft_utils_isnullvalue.c \
+		ft_utils_uninitarr.c
 #./srcs/parse
 SRCS += ft_parse_gramma.c \
 		ft_parse_initderi.c \

@@ -3,34 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lltab_first.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  <>                                        +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/28 20:47:55 by                   #+#    #+#             */
-/*   Updated: 2018/09/28 21:03:03 by                  ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_lltab_first.c                                   :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/22 15:45:28 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/09/28 20:47:27 by                  ###   ########.fr       */
+/*   Updated: 2018/10/04 13:30:44 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <stddef.h>
-#include "analyser_ll.h"
-#include "libft.h"
-
-extern t_buff		g_llderi;
-extern t_intarr		g_llfirst;
-extern t_intarr		g_llffirst;
-extern int			g_llpiv;
-extern int			g_lllast;
 
 /*
 ** Pour toute production premier de S:
@@ -50,54 +28,15 @@ extern int			g_lllast;
 ** à ε alors Premier(S) équivaux premier(A)
 */
 
-extern void		ft_utils_insert(int *line, int *value, size_t size)
-{
-	size_t			i;
-	int				j;
-	int				x;
+#include <stddef.h>
+#include "analyser_ll.h"
+#include "libft.h"
 
-	i = 0;
-	x = g_lllast - g_llpiv + 1;
-	while (i < size && value[i] != -1)
-	{
-		j = 0;
-		if (value[i] != g_lllast)
-		{
-			while (j < x && line[j] != value[i] && line[j] != -1)
-				j++;
-			line[j] = value[i];
-		}
-		i++;
-	}
-}
-
-extern void		ft_utils_insertnull(int *line)
-{
-	int			i;
-	int			x;
-	
-	i = 0;
-	x = g_lllast - g_llpiv + 1;
-	while (i < x && line[i] != g_lllast && line[i] != -1)
-		i++;
-	line[i] = g_lllast;
-}
-
-extern int		ft_utils_isnullvalue(int *line)
-{
-	int			i;
-	int			x;
-
-	i = 0;
-	x = g_lllast - g_llpiv + 1;
-	while (i < x && line[i] != -1)
-	{
-		if (line[i] == g_lllast)
-			return (1);
-		i++;
-	}
-	return (0);
-}
+extern t_buff		g_llderi;
+extern t_intarr		g_llfirst;
+extern t_intarr		g_llffirst;
+extern int			g_llpiv;
+extern int			g_lllast;
 
 static int			ft_lltab_insertterm(int val, int y, int ind)
 {
@@ -124,7 +63,6 @@ static int			ft_lltab_initfirst(t_llderi rule, int y, int ind)
 	int				ret;
 	t_llderi		*tmp;
 
-	ft_putendl("init first");
 	tmp = (t_llderi *)g_llderi.buff;
 	if (rule.d_size > 1 && ft_utils_isnullvalue(rule.deri))
 		return (-1); // Erreur sur la grammaire
@@ -132,13 +70,11 @@ static int			ft_lltab_initfirst(t_llderi rule, int y, int ind)
 	ret = 1;
 	while (i < rule.d_size)
 	{
-		ft_printf("index : %d\n", i);
 		if(ft_lltab_insertterm(rule.deri[i], y, ind))
 			break;
 		j = 0;
 		while (j < g_llpiv)
 		{
-			ft_printf("index_j : %d\n", j);
 			if (tmp[j].y == rule.deri[i] && rule.deri[i] != y)
 			{
 				ret = ft_lltab_initfirst(tmp[j], tmp[j].y, j);
@@ -163,7 +99,6 @@ extern int			ft_lltab_first(void)
 	tmp = (t_llderi *)g_llderi.buff;
 	while (i < g_llpiv)
 	{
-		ft_printf("flag_%d\n", i);
 		if (ft_lltab_initfirst(tmp[i], tmp[i].y, i) < 0)
 			return (-1);
 		i++;
