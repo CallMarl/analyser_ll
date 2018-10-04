@@ -1,26 +1,9 @@
 %%
 
-& ; && || | simple_commande shell_command function_def
+term
 
 %%
 
-commande_line :: simple_list
-
-simple_list :: simple_list1
-	    :: simple_list1 &
-	    :: simple_list1 ;
-
-simple_list1 :: simple_list1 && simple_list1
-	     :: simple_list1 || simple_list1
-	     :: simple_list1 & simple_list1
-	     :: simple_list1 ; simple_list1
-	     :: pipeline
-
-pipeline :: pipeline | pipeline
-	 :: commande
-
-command :: simple_commande
-	:: shell_commande
-	:: function_def
+RULE :: term
 
 %%

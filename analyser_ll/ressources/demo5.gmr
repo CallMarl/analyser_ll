@@ -1,9 +1,20 @@
 %%
 
-term
++ * id ( )
 
 %%
 
-RULE :: term
+E	:: T EE
+
+EE	:: + T EE
+	:: ε
+
+T	:: F TT
+
+TT	:: * F TT
+	:: ε
+
+F	:: id
+	:: ( E )
 
 %%

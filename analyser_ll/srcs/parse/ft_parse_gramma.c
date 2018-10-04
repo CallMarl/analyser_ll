@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 16:05:08 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/09/20 12:54:14 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/10/04 14:36:16 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ static int			ft_parse_gramma_aux(int fd, t_buff *term, t_buff *rule)
 	ret = 0;
 	while (ret >= 0 && (ret = ft_gnl(fd, &line)) >= 1)
 	{
+		ft_putendl(line);
 		ft_strsanitize(line, " \t\v\r");
 		if (*line != '\0')
 			ret = ft_parse_readline(line, term, rule);

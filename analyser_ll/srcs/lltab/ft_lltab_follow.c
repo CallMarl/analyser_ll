@@ -6,7 +6,7 @@
 /*   By: pprikazs <pprikazs@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/25 17:50:42 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/10/04 13:21:42 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/10/04 16:45:44 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,20 +65,22 @@ static void			ft_lltab_followcase(int y, int ind, t_llderi cur, size_t j)
 	if (j + 1 < cur.d_size)
 	{
 		rule = cur.deri[j + 1];
-		if (rule < g_llpiv && ft_utils_isnullvalue(g_llffirst.arr[rule - 1]))
+		if (rule < g_llpiv && ft_utils_isnullvalue(g_llffirst.arr[rule - 1], g_llffirst.max_x))
 		{
 			first = rule;
 			rule = cur.y;
 		}
 	}
 	if (rule < g_llpiv && g_llfollow.arr[rule - 1][0] == -1 && rule != ind)
-	{
 		ft_lltab_initfollow(rule, ind);
-	}
 	if (rule >= g_llpiv)
 		ft_utils_insert(g_llfollow.arr[y - 1], &rule, 1);
 	else
+	{
 		ft_utils_insert(g_llfollow.arr[y - 1], g_llfollow.arr[rule - 1], g_llfollow.max_x);
+		if (ft_utils_isnullvalue(g_llfollow.arr[rule - 1], g_llfollow.max_x))
+			ft_utils_insertnull(g_llfollow.arr[y - 1]);
+	}
 	if (first != -1)
 		ft_utils_insert(g_llfollow.arr[y - 1], g_llffirst.arr[first - 1], g_llfollow.max_x);
 }
@@ -113,7 +115,7 @@ extern void			ft_lltab_follow()
 
 	i = 0;
 	tmp = (t_llderi *)g_llderi.buff;
-	while (i < g_llffirst.max_y)
+	while (i < g_llpiv)
 	{
 		ft_lltab_initfollow(tmp[i].y, i);
 		i++;

@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 19:02:53 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/09/21 02:59:29 by                  ###   ########.fr       */
+/*   Updated: 2018/10/04 15:06:09 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int						ft_parse_readrule(char *line, t_buff *rule);
 int						ft_parse_readterm(char *line, t_buff *term);
 void					ft_utils_insert(int *line, int *value, size_t size);
 void					ft_utils_insertnull(int *line);
-int						ft_utils_isnullvalue(int *line);
+int						ft_utils_isnullvalue(int *line, int size);
 void					ft_utils_uninitarr(t_intarr *arr);
 int						ft_utils_initarr(t_intarr *arr, int x, int y);
 int						ft_utils_getnbrule(void);

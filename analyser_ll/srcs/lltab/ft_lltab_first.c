@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/22 15:45:28 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/10/04 13:30:44 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/10/04 17:59:56 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,30 +63,39 @@ static int			ft_lltab_initfirst(t_llderi rule, int y, int ind)
 	int				ret;
 	t_llderi		*tmp;
 
+//	ft_printf("__FIRST__%d\n", y);
 	tmp = (t_llderi *)g_llderi.buff;
-	if (rule.d_size > 1 && ft_utils_isnullvalue(rule.deri))
+	if (rule.d_size > 1 && ft_utils_isnullvalue(rule.deri, (int)rule.d_size))
 		return (-1); // Erreur sur la grammaire
 	i = 0;
 	ret = 1;
 	while (i < rule.d_size)
 	{
+//		ft_printf(" ____index%d\n", i);
 		if(ft_lltab_insertterm(rule.deri[i], y, ind))
 			break;
 		j = 0;
 		while (j < g_llpiv)
 		{
+//			ft_printf(" ______rule%d", j);
+//			ft_printf(" ____ tmp[j].y : %d, rule.deri[i] %d\n", tmp[j].y, rule.deri[i]);
 			if (tmp[j].y == rule.deri[i] && rule.deri[i] != y)
 			{
-				ret = ft_lltab_initfirst(tmp[j], tmp[j].y, j);
+//				ft_printf(" ________callback%d\n", j);
+				if ((ret = ft_lltab_initfirst(tmp[j], tmp[j].y, j)) < 0)
+					return (ret);
 				ft_utils_insert(g_llfirst.arr[ind], g_llffirst.arr[rule.deri[i] - 1], g_llfirst.max_x);
 				ft_utils_insert(g_llffirst.arr[y - 1], g_llffirst.arr[rule.deri[i] - 1], g_llfirst.max_x);
-				if (!ft_utils_isnullvalue(g_llffirst.arr[y - 1]))
-					break ;
 			}
 			j++;
 		}
+		if (!ft_utils_isnullvalue(g_llffirst.arr[y - 1], g_llffirst.max_x))
+			break ;
 		i++;
 	}
+//	ft_putendl("\nFirst arr:");
+//	ft_debug_intarr(&g_llfirst);
+//	ft_putendl("out");
 	return (ret);
 }
 
@@ -99,6 +108,7 @@ extern int			ft_lltab_first(void)
 	tmp = (t_llderi *)g_llderi.buff;
 	while (i < g_llpiv)
 	{
+//		ft_printf("__turn%d\n", i);
 		if (ft_lltab_initfirst(tmp[i], tmp[i].y, i) < 0)
 			return (-1);
 		i++;

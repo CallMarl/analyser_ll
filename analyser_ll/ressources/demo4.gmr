@@ -1,159 +1,20 @@
 %%
 
-  word
-  assigement_word
-  name
-  newline
-  io_number
-  and_if    or_if     dsemi
-  less     great   and    semi    pipe
-  dless    dgreat    lessand     greatand     lessgreat     dlessdash
-  clobber
-  if    then    else    elif    fi    do    done
-  case    esac    while    until    for
-  lbrace    rbrace    bang    lpar    rpar
-  in
++ * a ( )
 
 %%
 
-AXIOM				:: COMPLETE_COMMAND
+E	:: T X
 
-COMPLETE_COMMAND	:: LIST SEPARATOR
-					:: LIST
+X	:: + T X
+	:: ε
 
-LIST				:: LIST SEPARATOR_OP AND_OR
-					:: AND_OR
+T	:: F Y
 
-AND_OR				:: PIPELINE
-					:: AND_OR and_if LINEBREAK PIPELINE
-					:: AND_OR or_if LINEBREAK PIPELINE
+Y	:: * F Y
+	:: ε
 
-PIPELINE			:: PIPE_SEQUENCE
-					:: bang PIPE_SEQUENCE
-
-PIPE_SEQUENCE		:: COMMAND
-					:: PIPE_SEQUENCE pipe LINEBREAK COMMAND
-
-COMMAND				:: SIMPLE_COMMAND
-					:: COMPOUND_COMMAND
-					:: COMPOUND_COMMAND REDIRECT_LIST
-					:: FUNCTION_DEFINITION
-
-COMPOUND_COMMAND	:: BRACE_GROUPE
-					:: SUBSHELL
-					:: FOR_CLAUSE
-					:: CASE_CLAUSE
-					:: IF_CLAUSE
-					:: WHILE_CLAUSE
-					:: UNTIL_CLAUSE
-
-SUBSHELL 			:: lpar COMPOUND_LIST rpar
-
-COMPOUND_LIST		:: TERM
-					:: NEWLINE_LIST TERM
-					:: TERM SEPARATOR
-					:: NEWLINE_LIST TERM SEPARATOR
-
-TERM				:: TERM SEPARATOR AND_OR
-					:: AND_OR
-
-FOR_CLAUSE			:: for name LINEBREAK DO_GROUP
-					:: for name LINEBREAK in SEQUENTIAL_SEP DO_GROUP
-					:: for name LINEBREAK in WORDLIST SEQUENTIAL_SEP DO_GROUP
-
-WORDLIST			:: WORDLIST word
-					:: word
-
-CASE_CLAUSE			:: case word LINEBREAK in LINEBREAK CASE_LIST esac
-					:: case word LINEBREAK CASE_LIST_NS esac
-					:: case word LINEBREAK in LINEBREAK esac
-
-CASE_LIST_NS		:: CASE_LIST CASE_ITEM_NS
-					:: CASE_ITEM_NS
-
-CASE_LIST			:: CASE_LIST CASE_ITEM
-					:: CASE_ITEM
-
-CASE_ITEM_NS		:: PATTERN rpar
-					:: PATTERN rpar COMPOUND_LIST LINEBREAK
-					:: lpar PATTERN rpar LINEBREAK
-					:: lpar PATTERN rpar COMPOUND_LIST LINEBREAK
-
-CASE_ITEM			:: PATTERN rpar LINEBREAK dsemi LINEBREAK
-					:: PATTERN rpar COMPOUND_LIST dsemi LINEBREAK
-					:: lpar PATTERN rpar LINEBREAK dsemi LINEBREAK
-					:: lpar PATTERN rpar COMPOUND_LIST dsemi LINEBREAK
-
-PATTERN				:: word
-					:: PATTERN pipe word
-
-IF_CLAUSE			:: if COMPOUND_LIST then COMPOUND_LIST ELSE_PART fi
-					:: if COMPOUND_LIST then COMPOUND_LIST
-
-ELSE_PART			:: elif COMPOUND_LIST then ELSE_PART
-					:: else COMPOUND_LIST
-
-WHILE_CLAUSE		:: while COMPOUND_LIST DO_GROUP
-
-UNTIL_CLAUSE		:: until COMPOUND_LIST DO_GROUP
-
-FUNCTION_DEFINITION	:: name lpar rpar LINEBREAK FUNCTION_BODY
-
-FUNCTION_BODY		:: COMPOUND_COMMAND
-					:: COMPOUND_COMMAND REDIRECT_LIST 
-
-BRACE_GROUPE		:: lbrace COMPOUND_LIST rbrace
-
-DO_GROUP			:: do COMPOUND_LIST done
-
-SIMPLE_COMMAND		:: CMD_PREFIX word CMD_SUFFIX
-					:: CMD_PREFIX word
-					:: CMD_PREFIX
-					:: word CMD_SUFFIX
-					:: word
-
-CMD_PREFIX			:: IO_REDIRECT
-					:: CMD_PREFIX IO_REDIRECT
-					:: assigement_word
-					:: CMD_PREFIX assigement_word
-
-CMD_SUFFIX			:: IO_REDIRECT
-					:: CMD_SUFFIX IO_REDIRECT
-					:: word
-					:: CMD_SUFFIX word
-
-REDIRECT_LIST		:: IO_REDIRECT
-					:: REDIRECT_LIST IO_REDIRECT
-
-IO_REDIRECT			:: IO_FILE
-					:: io_number IO_FILE
-					:: IO_HERE
-					:: io_number IO_HERE
-
-IO_FILE				:: less word
-					:: lessand word
-					:: great word
-					:: greatand word
-					:: dgreat word
-					:: lessgreat word
-					:: clobber
-
-IO_HERE				:: dless word
-					:: dlessdash word
-
-SEPARATOR			:: SEPARATOR_OP LINEBREAK
-					:: NEWLINE_LIST
-
-SEQUENTIAL_SEP		:: semi LINEBREAK
-					:: NEWLINE_LIST
-
-LINEBREAK			:: NEWLINE_LIST
-					:: ε
-
-NEWLINE_LIST		:: newline
-					:: newline NEWLINE_LIST
-
-SEPARATOR_OP		:: and
-					:: semi
+F	:: a
+	:: ( E )
 
 %%
