@@ -167,3 +167,4 @@ https://fr.wikipedia.org/wiki/Grammaire_formelle
 https://fr.wikipedia.org/wiki/Symboles_terminaux_et_non_terminaux
 https://fr.wikipedia.org/wiki/Grammaire_non_contextuelle
 https://fr.wikipedia.org/wiki/Analyse_LL
+https://github.com/DmitrySoshnikov/syntax/blob/master/examples/calc.ll1
