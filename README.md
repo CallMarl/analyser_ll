@@ -1,4 +1,4 @@
-#Analyser LL
+# Analyser LL
 
 L'analyser LL est un programme permettant de générer un tableau d'analyse à
 partir d'une grammaire, d'un fichier texte formaté. Il génère un
@@ -8,7 +8,7 @@ Cette Analyser LL est accompagné d'une libraire permettant de travailler avec
 les fichier binaires ```.all``` ainsi générés, directement depuis un projet C.
 
 
-##Installation
+## Installation
 
 Pour installer l'analyser LL, il suffit de lancer les commandes ci-dessous
 
@@ -19,7 +19,7 @@ make analyser_ll
 
 ```
 
-##Usage
+## Usage
 
 Pour compiler un fichier de grammaire, il suffit de lancer la commande
 ci-dessous :
@@ -32,7 +32,7 @@ ci-dessous :
 Le fichier de grammaire doit porté l'extension ``.gmr``, le fichier binaire
 générer par l'analyseur LL porte l'extension ``.all``.
 
-##La grammaire
+## La grammaire
 
 Afin de rédiger un fichier de grammaire, il suffit de respecter ces quelques
 règles de formatage:
@@ -55,7 +55,7 @@ déclaration des règles
 %%
 ```
 
-####Déclaration des terminaux
+#### Déclaration des terminaux
 
 Les terminaux doivent se trouver dans le premier block du fichier de grammaire,
 les terminaux corresponde à une énumération de termes distinct les un des autres
@@ -83,7 +83,7 @@ nbr somme produit moins
 %%
 ```
 
-####Déclaration des règles
+#### Déclaration des règles
 
 Les règles doivent se trouver dans le segon block du fichier de grammaire,
 les règles doivent toutes posséder un nom distinct les une des autres. Afin
@@ -123,13 +123,13 @@ EXP :: nbr somme nbr
 %%
 ```
 
-####Termes réservés
+#### Termes réservés
 
   * ``%%`` : Délimiteurs pour un bloque
   * ``::`` : Règles de dérivation
   * ``ε`` : Caractere null
 
-####Exemple
+#### Exemple
 
 ```
 %%
@@ -157,11 +157,11 @@ NUMBER :: nbr
 %%
 ```
 
-##Librairie
+## Librairie
 
-######Bientôt
+###### Bientôt
 
-##Liens
+## Liens
 
 https://fr.wikipedia.org/wiki/Grammaire_formelle
 https://fr.wikipedia.org/wiki/Symboles_terminaux_et_non_terminaux
